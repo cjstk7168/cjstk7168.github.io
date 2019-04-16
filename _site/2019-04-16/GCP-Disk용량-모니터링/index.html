@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[GCP] VM Instance Disk Monitoring</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+
+  <!-- Font -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for 시원한물냉의 사람사는 이야기" href="/feed.xml" />
+  <!-- Begin Jekyll SEO tag v2.6.0 -->
+<title>[GCP] VM Instance Disk Monitoring | 시원한물냉의 사람사는 이야기</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="[GCP] VM Instance Disk Monitoring" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Google Cloud Platform (GCP)에서 Disk 용량 부족하면 알림기능 만들기" />
+<meta property="og:description" content="Google Cloud Platform (GCP)에서 Disk 용량 부족하면 알림기능 만들기" />
+<link rel="canonical" href="http://localhost:4000/2019-04-16/GCP-Disk%EC%9A%A9%EB%9F%89-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81/" />
+<meta property="og:url" content="http://localhost:4000/2019-04-16/GCP-Disk%EC%9A%A9%EB%9F%89-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81/" />
+<meta property="og:site_name" content="시원한물냉의 사람사는 이야기" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-04-16T00:00:00+09:00" />
+<script type="application/ld+json">
+{"description":"Google Cloud Platform (GCP)에서 Disk 용량 부족하면 알림기능 만들기","@type":"BlogPosting","url":"http://localhost:4000/2019-04-16/GCP-Disk%EC%9A%A9%EB%9F%89-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81/","headline":"[GCP] VM Instance Disk Monitoring","dateModified":"2019-04-16T00:00:00+09:00","datePublished":"2019-04-16T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019-04-16/GCP-Disk%EC%9A%A9%EB%9F%89-%EB%AA%A8%EB%8B%88%ED%84%B0%EB%A7%81/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+  <!-- Google Analytics -->
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', '', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+</head>
+
+<body>
+  <div class="content-container">
+    <header>
+  <div class="header-small">
+    <a href="http://localhost:4000">시원한물냉의 사람사는 이야기</a>
+  </div>
+</header>
+<div class="post">
+  <div class="post-title">[GCP] VM Instance Disk Monitoring</div>
+  <span class="post-date">
+    <time>16 Apr 2019</time>
+  </span>
+  <div class="post-tag">
+    <ul>
+      
+      <li>
+        <a href="http://localhost:4000/tags#서버">
+          <span>서버</span>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="http://localhost:4000/tags#리눅스">
+          <span>리눅스</span>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="http://localhost:4000/tags#더미">
+          <span>더미</span>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="http://localhost:4000/tags#BackEnd">
+          <span>BackEnd</span>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="http://localhost:4000/tags#알림">
+          <span>알림</span>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="http://localhost:4000/tags#GCP">
+          <span>GCP</span>
+        </a>
+      </li>
+      
+      
+    </ul>
+  </div>
+
+  <p>GCP.. 검색해보면 AWS에 비해 많이 부족한 검색자료.
+이번에 적용하는 김에 문서로 정리해둔다.
+(다음에 또 적용할 필요가 있을 때를 대비하여)</p>
+
+<ul>
+  <li>VM Instance 는 생성하였다고 가정한 후 시작합니다.</li>
+</ul>
+
+<h2 id="1-instance에-stackdriver-monitoring-설치">1. Instance에 Stackdriver Monitoring 설치</h2>
+
+<p><a href="https://cloud.google.com/monitoring/agent/install-agent?hl=ko">GCP Document 문서</a></p>
+
+<h4 id="1-vm-인스턴스에서-다음-명령어를-실행하여-모니터링-에이전트를-설치합니다">1. VM 인스턴스에서 다음 명령어를 실행하여 모니터링 에이전트를 설치합니다.</h4>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">curl -sSO https://dl.google.com/cloudagents/install-monitoring-agent.sh
+sudo bash install-monitoring-agent.sh
+</span></code></pre></div></div>
+
+<h4 id="2-vm-인스턴스에서-다음-명령어를-실행하여-monitoring-에이전트를-다시-시작합니다">2. VM 인스턴스에서 다음 명령어를 실행하여 Monitoring 에이전트를 다시 시작합니다.</h4>
+
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="go">sudo service stackdriver-agent restart
+</span></code></pre></div></div>
+
+<h2 id="2-stackdriver에-policy-추가">2. Stackdriver에 Policy 추가</h2>
+
+<p><a href="https://cloud.google.com/monitoring/alerts/">GCP Document 문서</a>
+<a href="https://cloud.google.com/stackdriver/pricing#alert-usage">정책만들기 GCP 문서</a></p>
+
+<h4 id="1-policy-create">1. Policy Create</h4>
+
+<ol>
+  <li>
+    <p>Stackdriver &gt; Alerting &gt; Create a Policy 로 이동
+<img src="/images/post_1/img_1.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>Add Condition 선택</p>
+  </li>
+  <li>
+    <p>Target 설정
+Resource Type : GCE VM Instance
+Metric : Disk Usage [디스크 사용량 - 정량(숫자)표시] / Disk Utilization [디스크 사용량 - % 계산]</p>
+  </li>
+  <li>
+    <p>Filter를 이용하여 원하는 Disk 선택</p>
+  </li>
+  <li>
+    <p>Configuration 설정 (문서 참고)</p>
+  </li>
+  <li>
+    <p>Save</p>
+  </li>
+</ol>
+
+<h4 id="2-notifications-설정">2. Notifications 설정</h4>
+
+<ol>
+  <li>알림을 받고자 하는 매체 선택
+SMS, Slack, Email 등</li>
+</ol>
+
+<h4 id="3-save-done">3. Save (done)</h4>
+
+<hr />
+
+<p>용량을 채우고 테스트 해보아야 하는데 어떻게? =&gt; <a href="/2019-04-15/Linux-%E1%84%83%E1%85%A5%E1%84%86%E1%85%B5%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5/">링크</a></p>
+
+
+  <!-- Disqus -->
+  
+  <div class="post-disqus">
+      <section id="disqus_thread"></section>
+      <script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//cjstk7168.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  </div>
+  
+
+</div>
+
+
+    <!-- Documents about icons are here: http://fontawesome.io/icons/ -->
+<div class="footer">
+  <hr />
+  <div class="footer-link">
+    
+	
+	
+	
+	
+
+    
+
+    
+	
+	
+	
+	
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+
+    
+
+    
+
+    
+    <a href="mailto:kissob4905@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+    
+
+  </div>
+  © 2019 cjstk7168. All rights reserved.
+</div>
+
+  </div>
+</body>
+</html>

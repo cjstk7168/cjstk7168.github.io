@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>시원한물냉의 사람사는 이야기</title>
+    <link>http://localhost:4000</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>[GCP] VM Instance Disk Monitoring</title>
+        <description>&lt;p&gt;GCP.. 검색해보면 AWS에 비해 많이 부족한 검색자료.
+이번에 적용하는 김에 문서로 정리해둔다.
+(다음에 또 적용할 필요가 있을 때를 대비하여)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;VM Instance 는 생성하였다고 가정한 후 시작합니다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;1-instance에-stackdriver-monitoring-설치&quot;&gt;1. Instance에 Stackdriver Monitoring 설치&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://cloud.google.com/monitoring/agent/install-agent?hl=ko&quot;&gt;GCP Document 문서&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;1-vm-인스턴스에서-다음-명령어를-실행하여-모니터링-에이전트를-설치합니다&quot;&gt;1. VM 인스턴스에서 다음 명령어를 실행하여 모니터링 에이전트를 설치합니다.&lt;/h4&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;go&quot;&gt;curl -sSO https://dl.google.com/cloudagents/install-monitoring-agent.sh
+sudo bash install-monitoring-agent.sh
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;2-vm-인스턴스에서-다음-명령어를-실행하여-monitoring-에이전트를-다시-시작합니다&quot;&gt;2. VM 인스턴스에서 다음 명령어를 실행하여 Monitoring 에이전트를 다시 시작합니다.&lt;/h4&gt;
+
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;go&quot;&gt;sudo service stackdriver-agent restart
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;2-stackdriver에-policy-추가&quot;&gt;2. Stackdriver에 Policy 추가&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://cloud.google.com/monitoring/alerts/&quot;&gt;GCP Document 문서&lt;/a&gt;
+&lt;a href=&quot;https://cloud.google.com/stackdriver/pricing#alert-usage&quot;&gt;정책만들기 GCP 문서&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;1-policy-create&quot;&gt;1. Policy Create&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Stackdriver &amp;gt; Alerting &amp;gt; Create a Policy 로 이동
+&lt;img src=&quot;/images/post_1/img_1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Add Condition 선택&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Target 설정
+Resource Type : GCE VM Instance
+Metric : Disk Usage [디스크 사용량 - 정량(숫자)표시] / Disk Utilization [디스크 사용량 - % 계산]&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Filter를 이용하여 원하는 Disk 선택&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Configuration 설정 (문서 참고)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Save&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;2-notifications-설정&quot;&gt;2. Notifications 설정&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;알림을 받고자 하는 매체 선택
+SMS, Slack, Email 등&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;3-save-done&quot;&gt;3. Save (done)&lt;/h4&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;용량을 채우고 테스트 해보아야 하는데 어떻게? =&amp;gt; &lt;a href=&quot;/2019-04-15/Linux-%E1%84%83%E1%85%A5%E1%84%86%E1%85%B5%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5/&quot;&gt;링크&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 16 Apr 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2019-04-16/GCP-Disk%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC-%E1%84%86%E1%85%A9%E1%84%82%E1%85%B5%E1%84%90%E1%85%A5%E1%84%85%E1%85%B5%E1%86%BC/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-04-16/GCP-Disk%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%85%E1%85%A3%E1%86%BC-%E1%84%86%E1%85%A9%E1%84%82%E1%85%B5%E1%84%90%E1%85%A5%E1%84%85%E1%85%B5%E1%86%BC/</guid>
+      </item>
+    
+      <item>
+        <title>Linux 더미파일 만들기</title>
+        <description>&lt;h2 id=&quot;과제-disk-사용량이-90이상이-넘어가는것을-테스트하기-위해-용량이-큰-파일이-필요하다&quot;&gt;과제. Disk 사용량이 90%이상이 넘어가는것을 테스트하기 위해 용량이 큰 파일이 필요하다.&lt;/h2&gt;
+
+&lt;p&gt;1G 용량을 차지하는 더미파일을 만드는 명령어가 존재한다.&lt;/p&gt;
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;#&lt;/span&gt; fallocate &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; 1G test_file
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</description>
+        <pubDate>Mon, 15 Apr 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2019-04-15/Linux-%E1%84%83%E1%85%A5%E1%84%86%E1%85%B5%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-04-15/Linux-%E1%84%83%E1%85%A5%E1%84%86%E1%85%B5%E1%84%91%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%AF-%E1%84%86%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B3%E1%86%AF%E1%84%80%E1%85%B5/</guid>
+      </item>
+    
+  </channel>
+</rss>

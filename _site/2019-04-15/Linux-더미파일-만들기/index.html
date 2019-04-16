@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Linux 더미파일 만들기</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+
+  <!-- Font -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for 시원한물냉의 사람사는 이야기" href="/feed.xml" />
+  <!-- Begin Jekyll SEO tag v2.6.0 -->
+<title>Linux 더미파일 만들기 | 시원한물냉의 사람사는 이야기</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Linux 더미파일 만들기" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="디스크 용량이 가득 차면 어딘가 알림을 보내고싶었다. 용량이 가득 차게 만들고싶었다." />
+<meta property="og:description" content="디스크 용량이 가득 차면 어딘가 알림을 보내고싶었다. 용량이 가득 차게 만들고싶었다." />
+<link rel="canonical" href="http://localhost:4000/2019-04-15/Linux-%EB%8D%94%EB%AF%B8%ED%8C%8C%EC%9D%BC-%EB%A7%8C%EB%93%A4%EA%B8%B0/" />
+<meta property="og:url" content="http://localhost:4000/2019-04-15/Linux-%EB%8D%94%EB%AF%B8%ED%8C%8C%EC%9D%BC-%EB%A7%8C%EB%93%A4%EA%B8%B0/" />
+<meta property="og:site_name" content="시원한물냉의 사람사는 이야기" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-04-15T00:00:00+09:00" />
+<script type="application/ld+json">
+{"description":"디스크 용량이 가득 차면 어딘가 알림을 보내고싶었다. 용량이 가득 차게 만들고싶었다.","@type":"BlogPosting","url":"http://localhost:4000/2019-04-15/Linux-%EB%8D%94%EB%AF%B8%ED%8C%8C%EC%9D%BC-%EB%A7%8C%EB%93%A4%EA%B8%B0/","headline":"Linux 더미파일 만들기","dateModified":"2019-04-15T00:00:00+09:00","datePublished":"2019-04-15T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019-04-15/Linux-%EB%8D%94%EB%AF%B8%ED%8C%8C%EC%9D%BC-%EB%A7%8C%EB%93%A4%EA%B8%B0/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+  <!-- Google Analytics -->
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', '', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+
+</head>
+
+<body>
+  <div class="content-container">
+    <header>
+  <div class="header-small">
+    <a href="http://localhost:4000">시원한물냉의 사람사는 이야기</a>
+  </div>
+</header>
+<div class="post">
+  <div class="post-title">Linux 더미파일 만들기</div>
+  <span class="post-date">
+    <time>15 Apr 2019</time>
+  </span>
+  <div class="post-tag">
+    <ul>
+      
+      <li>
+        <a href="http://localhost:4000/tags#서버">
+          <span>서버</span>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="http://localhost:4000/tags#리눅스">
+          <span>리눅스</span>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="http://localhost:4000/tags#더미">
+          <span>더미</span>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="http://localhost:4000/tags#BackEnd">
+          <span>BackEnd</span>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="http://localhost:4000/tags#알림">
+          <span>알림</span>
+        </a>
+      </li>
+      
+      
+    </ul>
+  </div>
+
+  <h2 id="과제-disk-사용량이-90이상이-넘어가는것을-테스트하기-위해-용량이-큰-파일이-필요하다">과제. Disk 사용량이 90%이상이 넘어가는것을 테스트하기 위해 용량이 큰 파일이 필요하다.</h2>
+
+<p>1G 용량을 차지하는 더미파일을 만드는 명령어가 존재한다.</p>
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">#</span> fallocate <span class="nt">-l</span> 1G test_file
+</code></pre></div></div>
+
+
+  <!-- Disqus -->
+  
+  <div class="post-disqus">
+      <section id="disqus_thread"></section>
+      <script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//cjstk7168.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  </div>
+  
+
+</div>
+
+
+    <!-- Documents about icons are here: http://fontawesome.io/icons/ -->
+<div class="footer">
+  <hr />
+  <div class="footer-link">
+    
+	
+	
+	
+	
+
+    
+
+    
+	
+	
+	
+	
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+
+    
+
+    
+
+    
+    <a href="mailto:kissob4905@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+    
+
+  </div>
+  © 2019 cjstk7168. All rights reserved.
+</div>
+
+  </div>
+</body>
+</html>
