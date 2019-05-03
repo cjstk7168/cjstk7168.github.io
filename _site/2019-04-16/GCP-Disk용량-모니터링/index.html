@@ -109,8 +109,7 @@ ga('send', 'pageview');
     </ul>
   </div>
 
-  <p>GCP.. 검색해보면 AWS에 비해 많이 부족한 검색자료.
-이번에 적용하는 김에 문서로 정리해둔다.
+  <p>GCP.. 검색해보면 AWS에 비해 많이 부족한 검색자료. 이번에 적용하는 김에 문서로 정리해둔다.
 (다음에 또 적용할 필요가 있을 때를 대비하여)</p>
 
 <ul>
@@ -141,7 +140,7 @@ sudo bash install-monitoring-agent.sh
 
 <ol>
   <li>
-    <p>Stackdriver &gt; Alerting &gt; Create a Policy 로 이동
+    <p><code class="highlighter-rouge">Stackdriver &gt; Alerting &gt; Create a Policy</code> 로 이동
 <img src="/images/post_1/img_1.png" alt="image" /></p>
   </li>
   <li>
@@ -149,8 +148,9 @@ sudo bash install-monitoring-agent.sh
   </li>
   <li>
     <p>Target 설정
-Resource Type : GCE VM Instance
-Metric : Disk Usage [디스크 사용량 - 정량(숫자)표시] / Disk Utilization [디스크 사용량 - % 계산]</p>
+Resource Type : <code class="highlighter-rouge">GCE VM Instance</code>
+Metric : <code class="highlighter-rouge">Disk Usage</code> [디스크 사용량 - 정량(숫자)표시] or
+			<code class="highlighter-rouge">Disk Utilization</code> [디스크 사용량 - % 계산]</p>
   </li>
   <li>
     <p>Filter를 이용하여 원하는 Disk 선택</p>
@@ -167,7 +167,7 @@ Metric : Disk Usage [디스크 사용량 - 정량(숫자)표시] / Disk Utilizat
 
 <ol>
   <li>알림을 받고자 하는 매체 선택
-SMS, Slack, Email 등</li>
+<code class="highlighter-rouge">SMS</code>, <code class="highlighter-rouge">Slack</code>, <code class="highlighter-rouge">Email</code> 등</li>
 </ol>
 
 <h4 id="3-save-done">3. Save (done)</h4>
