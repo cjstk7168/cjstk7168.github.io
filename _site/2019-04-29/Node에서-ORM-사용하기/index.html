@@ -178,36 +178,36 @@ ga('send', 'pageview');
 </ol>
 
 <hr />
-<h4 id="3-typeorm-vs-sequelizejs-vs-knex">3. <code class="highlighter-rouge">TypeORM</code> vs <code class="highlighter-rouge">Sequelize.js</code> vs <code class="highlighter-rouge">Knex</code></h4>
+<h4 id="3-raw-sql-vs-typeorm-vs-sequelizejs-vs-knex">3. <code class="highlighter-rouge">Raw SQL</code> vs <code class="highlighter-rouge">TypeORM</code> vs <code class="highlighter-rouge">Sequelize.js</code> vs <code class="highlighter-rouge">Knex</code></h4>
 
 <blockquote>
   <p>문법의 비교</p>
 </blockquote>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. </span>
-<span class="kd">const</span> <span class="nx">sql</span> <span class="o">=</span> <span class="s2">"SELECT * FROM post WHERE authorId = 12 AND status = 'active'"</span><span class="p">;</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. SQL</span>
+<span class="kd">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="s2">"SELECT * FROM post WHERE authorId = 12 AND status = 'active'"</span><span class="p">;</span>
 
 <span class="c1">// Knex</span>
 <span class="nx">knex</span><span class="p">(</span><span class="s2">"post"</span><span class="p">).</span><span class="nx">select</span><span class="p">()</span>
  <span class="p">.</span><span class="nx">where</span><span class="p">({</span> <span class="na">authorId</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="s1">'active'</span><span class="p">});</span>
 
 <span class="c1">// Sequelize</span>
-<span class="nx">Post</span><span class="p">.</span><span class="nx">findAll</span><span class="p">({</span>
-  <span class="na">where</span><span class="p">:</span> <span class="p">{</span> <span class="na">authorId</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="s1">'active'</span> <span class="p">}</span>
-<span class="p">});</span>
+<span class="nx">models</span><span class="p">.</span><span class="nx">Post</span><span class="p">.</span><span class="nx">findAll</span><span class="p">({</span>
+    <span class="na">where</span><span class="p">:</span> <span class="p">{</span> <span class="na">authorId</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="s1">'active'</span> <span class="p">}</span>
+<span class="p">})</span>
 
 <span class="c1">// TypeORM</span>
-<span class="nx">Post</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span> <span class="na">authorId</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="s1">'active'</span> <span class="p">});</span>
+<span class="nx">connection</span><span class="p">.</span><span class="nx">getRepository</span><span class="p">(</span><span class="nx">Post</span><span class="p">).</span><span class="nx">find</span><span class="p">({</span> <span class="na">where</span><span class="p">:</span> <span class="p">{</span> <span class="na">authorId</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="s1">'active'</span> <span class="p">}</span> <span class="p">})</span>
 </code></pre></div></div>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 2. SQL</span>
-<span class="kd">const</span> <span class="nx">sql</span> <span class="o">=</span> <span class="s2">"select * 
-             from category_page 
-             where category_id = 5
-               and (show_at is null or show_at &gt;= now()) 
-               and (hide_at is null or hide_at &lt;= now())
-             order by updated_at desc 
-             limit 1"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="s2">"select * 
+               from category_page 
+               where category_id = 5
+                 and (show_at is null or show_at &gt;= now()) 
+                 and (hide_at is null or hide_at &lt;= now())
+               order by updated_at desc 
+               limit 1"</span><span class="p">;</span>
              
 <span class="c1">// Knex</span>
 <span class="nx">knex</span><span class="p">(</span><span class="s2">"category_page"</span><span class="p">)</span>
@@ -218,40 +218,77 @@ ga('send', 'pageview');
       <span class="p">.</span><span class="nx">first</span><span class="p">()</span>
 
 <span class="c1">// Sequelize</span>
-<span class="nx">CategoryPage</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span>
+<span class="nx">models</span><span class="p">.</span><span class="nx">CategoryPage</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span>
     <span class="na">where</span><span class="p">:</span> <span class="p">{</span>
         <span class="na">category_id</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-        <span class="na">$or</span><span class="p">:</span> <span class="p">[{</span>
-                <span class="na">show_at</span><span class="p">:</span> <span class="p">{</span> <span class="na">$eq</span><span class="p">:</span> <span class="kc">null</span> <span class="p">},</span>
-                <span class="na">show_at</span><span class="p">:</span> <span class="p">{</span> <span class="na">gte</span><span class="p">:</span> <span class="nx">$now</span> <span class="p">}</span>
-        <span class="p">}],</span>
-        <span class="na">$or</span><span class="p">:</span> <span class="p">[{</span>
-                <span class="na">hide_at</span><span class="p">:</span> <span class="p">{</span> <span class="na">$eq</span><span class="p">:</span> <span class="kc">null</span> <span class="p">},</span>
-                <span class="na">hide_at</span><span class="p">:</span> <span class="p">{</span> <span class="na">lte</span><span class="p">:</span> <span class="nx">$now</span> <span class="p">}</span>
-        <span class="p">}]</span>  
+        <span class="na">show_at</span><span class="p">:</span> <span class="p">{</span>
+            <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">or</span><span class="p">]:</span> <span class="p">[</span>
+                <span class="p">{</span> <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">eq</span><span class="p">]:</span> <span class="kc">null</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">gte</span><span class="p">]:</span> <span class="nx">now</span> <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="na">hide_at</span><span class="p">:</span> <span class="p">{</span>
+            <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">or</span><span class="p">]:</span> <span class="p">[</span>
+                <span class="p">{</span> <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">eq</span><span class="p">]:</span> <span class="kc">null</span> <span class="p">},</span>
+                <span class="p">{</span> <span class="p">[</span><span class="nx">Op</span><span class="p">.</span><span class="nx">lte</span><span class="p">]:</span> <span class="nx">now</span> <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
     <span class="p">},</span>
-    <span class="na">order</span><span class="p">:</span> <span class="s1">'updated_at DESC'</span>
+    <span class="na">order</span><span class="p">:</span> <span class="p">[[</span><span class="s1">'updated_at'</span><span class="p">,</span> <span class="s1">'DESC'</span><span class="p">]]</span>
 <span class="p">})</span>
 <span class="c1">// 참고 EQ("="), GTE("&gt;="), GT("&gt;"), LT("&lt;"), LTE("&lt;=");</span>
 
 <span class="c1">// TypeORM</span>
-<span class="nx">CategoryPage</span><span class="p">.</span><span class="nx">findOne</span><span class="p">({</span>
-    <span class="na">where</span><span class="p">:</span> <span class="p">(</span> <span class="nx">category_id</span> <span class="o">=</span> <span class="p">:</span><span class="nx">categoryId</span><span class="p">,</span> <span class="p">{</span> <span class="na">categoryId</span><span class="p">:</span> <span class="mi">5</span> <span class="p">})</span>
-    <span class="p">.</span><span class="nx">andWhere</span><span class="p">(</span><span class="nx">qb</span> <span class="o">=&gt;</span> 
-        <span class="nx">qb</span><span class="p">.</span><span class="nx">where</span><span class="p">(</span> <span class="nx">show_at</span> <span class="o">=</span> <span class="p">:</span><span class="nx">showAt</span><span class="p">,</span> <span class="p">{</span> <span class="na">showAt</span><span class="p">:</span> <span class="kc">null</span> <span class="p">})</span>
-        <span class="nx">qb</span><span class="p">.</span><span class="nx">orWhere</span><span class="p">(</span> <span class="nx">show_at</span> <span class="o">&gt;=</span> <span class="p">:</span><span class="nx">showAt</span><span class="p">,</span> <span class="p">{</span> <span class="na">showAt</span><span class="p">:</span> <span class="s1">'now()'</span> <span class="p">})</span>
-    <span class="p">)</span>
-    <span class="p">.</span><span class="nx">andWhere</span><span class="p">(</span><span class="nx">qb</span> <span class="o">=&gt;</span> 
-        <span class="nx">qb</span><span class="p">.</span><span class="nx">where</span><span class="p">(</span> <span class="nx">hide_at</span> <span class="o">=</span> <span class="p">:</span><span class="nx">hide_at</span><span class="p">,</span> <span class="p">{</span> <span class="na">hide_at</span><span class="p">:</span> <span class="kc">null</span> <span class="p">})</span>
-        <span class="nx">qb</span><span class="p">.</span><span class="nx">orWhere</span><span class="p">(</span> <span class="nx">hide_at</span> <span class="o">&lt;=</span> <span class="p">:</span><span class="nx">hide_at</span><span class="p">,</span> <span class="p">{</span> <span class="na">hide_at</span><span class="p">:</span> <span class="s1">'now()'</span> <span class="p">})</span>
-    <span class="p">)</span>
-    <span class="na">order</span><span class="p">:</span> <span class="p">{</span>
-        <span class="na">updated_at</span><span class="p">:</span> <span class="s1">'DESC'</span>
-    <span class="p">}</span>
-    
-<span class="p">});</span>
+<span class="nx">connection</span><span class="p">.</span><span class="nx">getRepository</span><span class="p">(</span><span class="nx">CategoryPage</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">createQueryBuilder</span><span class="p">()</span>
+    <span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="s2">"category_id = :categoryId"</span><span class="p">,</span> <span class="p">{</span> <span class="na">categoryId</span><span class="p">:</span> <span class="mi">5</span> <span class="p">})</span>
+    <span class="p">.</span><span class="nx">andWhere</span><span class="p">(</span><span class="s2">"(show_at is null or show_at &gt;= now())"</span> <span class="p">)</span>
+    <span class="p">.</span><span class="nx">andWhere</span><span class="p">(</span><span class="s2">"(hide_at is null or hide_at &lt;= now())"</span> <span class="p">)</span>
+    <span class="p">.</span><span class="nx">orderBy</span><span class="p">(</span><span class="s2">"updated_at"</span><span class="p">,</span> <span class="s2">"DESC"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">limit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">getMany</span><span class="p">()</span>
 
 </code></pre></div></div>
+
+<h6 id="예제-다운---nodeormgit--typeormgit">예제 다운 - <a href="https://github.com/cjstk7168/NodeORM">NodeORM(git)</a> / <a href="https://github.com/cjstk7168/TypeORM">TypeORM(git)</a></h6>
+
+<blockquote>
+  <p>함수 실행속도 비교</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">-</th>
+      <th style="text-align: center"><code class="highlighter-rouge">raw</code></th>
+      <th style="text-align: center"><code class="highlighter-rouge">typeORM</code></th>
+      <th style="text-align: center"><code class="highlighter-rouge">Sequelize.js</code></th>
+      <th style="text-align: center"><code class="highlighter-rouge">Knex.js</code></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Query 1</td>
+      <td style="text-align: center">0.870</td>
+      <td style="text-align: center">5.935</td>
+      <td style="text-align: center">35.025</td>
+      <td style="text-align: center">61.691</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Query 2</td>
+      <td style="text-align: center">0.275</td>
+      <td style="text-align: center">3.156</td>
+      <td style="text-align: center">9.425</td>
+      <td style="text-align: center">4.157</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>단위 : (ms)</li>
+  <li>ORM사용 시 Query1번에 대해서는 Connect부분 때문인지(?) 속도가 Query2에 비해 상대적으로 느린 현상이 보임</li>
+  <li><em>실행 Server의 성능에 따라 결과는 달라질 수 있음</em></li>
+</ul>
 
 <blockquote>
   <p>Github</p>
@@ -261,9 +298,9 @@ ga('send', 'pageview');
   <thead>
     <tr>
       <th style="text-align: center">-</th>
-      <th style="text-align: center"><a href="https://github.com/typeorm/typeorm"><code class="highlighter-rouge">typeORM</code></a></th>
-      <th style="text-align: center"><a href="https://github.com/sequelize/sequelize"><code class="highlighter-rouge">Sequelize.js</code></a></th>
-      <th style="text-align: center"><a href="https://github.com/tgriesser/knex"><code class="highlighter-rouge">Knex.js</code></a></th>
+      <th style="text-align: center"><code class="highlighter-rouge">typeORM</code></th>
+      <th style="text-align: center"><code class="highlighter-rouge">Sequelize.js</code></th>
+      <th style="text-align: center"><code class="highlighter-rouge">Knex.js</code></th>
     </tr>
   </thead>
   <tbody>
@@ -294,7 +331,7 @@ ga('send', 'pageview');
   </tbody>
 </table>
 
-<p><a href="https://www.npmtrends.com/sequelize-vs-typeorm-vs-knex">NPM trends 를 이용한 비교</a></p>
+<p><a href="https://www.npmtrends.com/sequelize-vs-typeorm-vs-knex">(NPM trends 로 확인하는 비교자료)</a></p>
 
 <blockquote>
   <p>Support Databases</p>
@@ -314,13 +351,21 @@ ga('send', 'pageview');
 <code class="highlighter-rouge">TypeORM, Sequelize(only TS &gt;= 3.1 is supported.)</code></p>
 <ul>
   <li>장점 : TypeScript를 지원, 생산성, 신뢰성을 만족</li>
-  <li>단점 : (실행속도, 튜닝의 어려움, 복잡한 쿼리작성)의 단점을 가지고 있으나, 이정도로 복잡하게 사용할 것인가? 고민</li>
+  <li>단점 : 실행속도, 튜닝의 어려움, 복잡한 쿼리작성 등의 단점(ORM의 단점)을 가지고 있으나, 이정도로 복잡하게 사용할 것인가? 고민</li>
 </ul>
+
+<blockquote>
+  <p>TypeORM, Sequelize의 차이점</p>
+  <ul>
+    <li>Sequelize에 비해 상대적으로 속도가 빠른 TypeORM</li>
+    <li>TypeORM는 코드작성이 raw쿼리에 좀 더 가까운 모습</li>
+  </ul>
+</blockquote>
 
 <p><strong>후보 2</strong><br />
 <code class="highlighter-rouge">인생은 날 쿼리. node-mysql/node-mysql2 only!</code></p>
 <ul>
-  <li>장점 : 튜닝, 복잡한 쿼리작성의 문제, ORM에 비해 상대적으로 빠 른 실행속도 모두를 만족!</li>
+  <li>장점 : 튜닝, 복잡한 쿼리작성의 문제, ORM에 비해 상대적으로 빠른 실행속도 모두를 만족!</li>
   <li>단점 : 생산성, 신뢰성 은 다소 떨어지는 단점</li>
 </ul>
 
@@ -333,7 +378,8 @@ ga('send', 'pageview');
     <p><a href="https://www.slant.co/topics/11235/~javascript-orms">6 Best JavaScript ORMs as of 2019</a></p>
   </li>
   <li><a href="https://typeorm.io/#/">TypeORM Document</a></li>
-  <li><a href="http://docs.sequelizejs.com/manual/querying.html#where">Sequelize Document</a></li>
+  <li><a href="http://docs.sequelizejs.com/manual/querying.html#where">Sequelize.js Document</a></li>
+  <li><a href="https://github.com/tgriesser/knex">Knex.js Document</a></li>
 </ul>
 
 
