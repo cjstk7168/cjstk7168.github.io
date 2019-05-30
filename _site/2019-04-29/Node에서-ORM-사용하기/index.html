@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
 
   <link rel="alternate" type="application/rss+xml" title="RSS Feed for 시원한물냉의 사람사는 이야기" href="/feed.xml" />
-  <!-- Begin Jekyll SEO tag v2.6.0 -->
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>[ORM] Node.js에서 ORM 사용하기 | 시원한물냉의 사람사는 이야기</title>
 <meta name="generator" content="Jekyll v3.8.5" />
 <meta property="og:title" content="[ORM] Node.js에서 ORM 사용하기" />
@@ -250,10 +250,8 @@ ga('send', 'pageview');
 
 </code></pre></div></div>
 
-<h6 id="예제-다운---nodeormgit--typeormgit">예제 다운 - <a href="https://github.com/cjstk7168/NodeORM">NodeORM(git)</a> / <a href="https://github.com/cjstk7168/TypeORM">TypeORM(git)</a></h6>
-
 <blockquote>
-  <p>함수 실행속도 비교</p>
+  <p>함수 실행속도 비교 (10번 실행한 결과의 평균 수치)</p>
 </blockquote>
 
 <table>
@@ -269,24 +267,34 @@ ga('send', 'pageview');
   <tbody>
     <tr>
       <td style="text-align: center">Query 1</td>
-      <td style="text-align: center">0.870</td>
-      <td style="text-align: center">5.935</td>
-      <td style="text-align: center">35.025</td>
-      <td style="text-align: center">61.691</td>
+      <td style="text-align: center">0.8</td>
+      <td style="text-align: center">2.19</td>
+      <td style="text-align: center">8.42</td>
+      <td style="text-align: center">3.86</td>
     </tr>
     <tr>
       <td style="text-align: center">Query 2</td>
-      <td style="text-align: center">0.275</td>
-      <td style="text-align: center">3.156</td>
-      <td style="text-align: center">9.425</td>
-      <td style="text-align: center">4.157</td>
+      <td style="text-align: center">1.51</td>
+      <td style="text-align: center">3.58</td>
+      <td style="text-align: center">4.02</td>
+      <td style="text-align: center">1.59</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Query 3</td>
+      <td style="text-align: center">1.39</td>
+      <td style="text-align: center">3.92</td>
+      <td style="text-align: center">9.13</td>
+      <td style="text-align: center">2.13</td>
     </tr>
   </tbody>
 </table>
 
+<p>– Query 1 : 단순 select 쿼리<br />
+– Query 2 : 단순 select 쿼리<br />
+– Query 3 : 단순 구조의 table 2개 join 쿼리</p>
+
 <ul>
   <li>단위 : (ms)</li>
-  <li>ORM사용 시 Query1번에 대해서는 Connect부분 때문인지(?) 속도가 Query2에 비해 상대적으로 느린 현상이 보임</li>
   <li><em>실행 Server의 성능에 따라 결과는 달라질 수 있음</em></li>
 </ul>
 
@@ -317,13 +325,13 @@ ga('send', 'pageview');
       <td style="text-align: center">JavaScript</td>
     </tr>
     <tr>
-      <td style="text-align: center">Docs (English)</td>
+      <td style="text-align: center">Google (English)</td>
       <td style="text-align: center">++</td>
       <td style="text-align: center">+++</td>
       <td style="text-align: center">++</td>
     </tr>
     <tr>
-      <td style="text-align: center">Docs (Korean)</td>
+      <td style="text-align: center">Google (Korean)</td>
       <td style="text-align: center">++</td>
       <td style="text-align: center">+++</td>
       <td style="text-align: center">++</td>
