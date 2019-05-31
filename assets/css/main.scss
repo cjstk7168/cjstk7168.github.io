@@ -6,3 +6,8 @@ sitemap: false
 @import "typography";
 @import "highlighter";
 @import "site";
+
+.site-category {
+  position: fixed;
+  left: 20px;
+}

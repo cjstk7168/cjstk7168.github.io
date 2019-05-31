@@ -3,6 +3,7 @@ layout: post
 title: "Dont't use Array.forEach()"
 description: "Node.js에서 for문 성능향상 팁"
 date: 2019-05-28
+categories: [JavaScript]
 tags: [서버, Backend, Node, Javascript]
 comments: true
 share: true
