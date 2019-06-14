@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JWT Token 사용하기</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+
+  <!-- Font -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for 시원한물냉의 사람 사는 이야기" href="/feed.xml" />
+
+
+<!--  <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai_sublime.min.css">-->
+<!--  <script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/highlight.min.js"></script>-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.5.0/styles/default.min.css">
+  <script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>JWT Token 사용하기 | 시원한물냉의 사람 사는 이야기</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="JWT Token 사용하기" />
+<meta property="og:locale" content="en_US" />
+<link rel="canonical" href="http://localhost:4000/2019-06-11/JWT/" />
+<meta property="og:url" content="http://localhost:4000/2019-06-11/JWT/" />
+<meta property="og:site_name" content="시원한물냉의 사람 사는 이야기" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-06-11T00:00:00+09:00" />
+<script type="application/ld+json">
+{"@type":"BlogPosting","url":"http://localhost:4000/2019-06-11/JWT/","headline":"JWT Token 사용하기","dateModified":"2019-06-11T00:00:00+09:00","datePublished":"2019-06-11T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019-06-11/JWT/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+  <!-- Google Analytics -->
+
+<!--<script>-->
+<!--(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){-->
+<!--  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),-->
+<!--  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)-->
+<!--})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');-->
+
+<!--ga('create', '', 'auto');-->
+<!--ga('send', 'pageview');-->
+
+<!--</script>-->
+
+
+
+</head>
+
+<body>
+  <div class="content-container">
+    <header>
+  <div class="header-small">
+    <a href="http://localhost:4000">시원한물냉의 사람 사는 이야기</a>
+  </div>
+</header>
+<div class="post">
+  <div class="post-title">JWT Token 사용하기</div>
+  <span class="post-date">
+    <time>11 Jun 2019</time>
+  </span>
+  <div class="post-tag">
+    <ul>
+      
+      <li>
+        <a href="http://localhost:4000/tags#Backend">
+          <span>Backend</span>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="http://localhost:4000/tags#Infra">
+          <span>Infra</span>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="http://localhost:4000/tags#security">
+          <span>security</span>
+        </a>
+      </li>
+      
+      
+    </ul>
+  </div>
+
+  <h2 id="jwt-json-web-token">JWT (JSON Web Token)</h2>
+<p>JSON Web Token (JWT)는 웹표준으로 두 개체에서 JSON 객체를 사용하여 안정성 있게 통신하는것을 지원한다.</p>
+
+<p>거의 대부분의 언어 (Java, C, Python, C++, PHP, JavaScript-node, Go, Swift, Ruby 등)에서 JWT를 지원하고 있다.</p>
+
+<h2 id="사용처">사용처</h2>
+<p>가장 많이 사용되는 상황으로는</p>
+<ol>
+  <li>
+    <p>회원인증 : 사용자가 로그인을하면 서버는 유저의 정보를 JWT를 기반한 토큰을 발행하여 서버는 클라이언트에게 전달하고 그 데이터를 사용하여 정상회원임을 인증한다.
+사용자가 어떠한 작업을 요청할 때마다 JWT토큰이 유효한지 만료가 되지 않았는지 권한이 있는지 등을 체크한다.</p>
+  </li>
+  <li>
+    <p>외부 매체와의 통신 : A서버에서 B서버와 통신하기 위하여 JWT를 사용한다. 두 개체 사이에 안정성있고 보안을 유지하기 위하여 A서버는 통신할 데이터를 JWT형태로 만들어 B서버로 전달한다. 이를 통해 데이터가 중간에 바뀌지 않았는지, 유효한 데이터인지 등의 검증이 가능하다.</p>
+  </li>
+</ol>
+
+<h2 id="jwt-너는-어떻게-생겼니">JWT 너는 어떻게 생겼니</h2>
+<p><code class="highlighter-rouge">AAAAA.BBBB.CCCC</code>
+위와같이 JWT는 ‘.’(dot)을 기준으로 Header, Payload, Signature 3개로 분리된다.</p>
+<ul>
+  <li>Header
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+</code></pre></div>    </div>
+    <p>헤더는 암호화 방식과 어떤 타입인지를 명시해준다. HMAC SHA256혹은 RSA등이 주로 사용된다.
+이곳에 명시된 알고리즘을 이용하여 추후 signature를 생성한다.</p>
+  </li>
+  <li>Payload
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "user_id": 1,
+  "age": 26,
+  "name": "홍길동"
+}
+</code></pre></div>    </div>
+    <p>Payload에는 실제 통신할 데이터가 들어간다.</p>
+  </li>
+  <li>Signature
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>HMACSHA256(
+base64UrlEncode(header) + '.' +
+base64UrlEncode(payload),
+secret)
+</code></pre></div>    </div>
+    <p>Header를 Base64인코딩 + ‘.’ + Payload를 Base64인코딩 한 후 secret_key를 이용하여 HMAC SHA256으로 암호화해준다.</p>
+  </li>
+</ul>
+
+<p>그리고 각각 생성된 Header + ‘.’ + Payload + ‘.’ + Signature를 이어주면 JWT 완성</p>
+
+<h2 id="node를-이용한-jwt-만들기">Node를 이용한 JWT 만들기</h2>
+<p>Payload</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">encodedPayload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">payload</span><span class="p">))</span>
+                            <span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="s1">'base64'</span><span class="p">)</span>
+                            <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">'='</span><span class="p">,</span> <span class="s1">''</span><span class="p">);</span>
+</code></pre></div></div>
+<p>위와같이 간단히 생성이 가능한다. (Header, Payload) 이 정보를 이용하여 Signature까지
+Signature생성 시 필요한 HMACSHA256은 node기본 내장모듈인 <code class="highlighter-rouge">crypto</code>안에 함수가 있다. (<code class="highlighter-rouge">crypto.createHmac</code>)</p>
+
+<p>그런데 위와같이 구현하다보면 작업이 너무 많다.
+그래서 친절한 어떤 친절한 개발자분께서 오픈소스로 제공했다.
+<code class="highlighter-rouge">jsonwebtoken</code> (url은 아래 참고에 첨부)</p>
+
+<hr />
+<ul>
+  <li>참고
+    <ol>
+      <li>https://jwt.io/</li>
+      <li>https://www.npmjs.com/package/jsonwebtoken</li>
+    </ol>
+  </li>
+</ul>
+
+
+  <!-- Disqus -->
+  
+  <div class="post-disqus">
+      <section id="disqus_thread"></section>
+      <script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//cjstk7168.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  </div>
+  
+
+</div>
+
+
+    <!-- Documents about icons are here: http://fontawesome.io/icons/ -->
+<div class="footer">
+  <hr />
+  <div class="footer-link">
+    
+	
+	
+	
+	
+
+    
+
+    
+	
+	
+	
+	
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+
+    
+
+    
+
+    
+    <a href="mailto:kissob4905@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+    
+
+  </div>
+  © 2019 cjstk7168. All rights reserved.
+</div>
+
+  </div>
+</body>
+</html>

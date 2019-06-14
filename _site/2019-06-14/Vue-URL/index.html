@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[Vue.js] URL뒤에 붙는 #</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+
+  <!-- Font -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for 시원한물냉의 사람 사는 이야기" href="/feed.xml" />
+
+
+<!--  <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/highlight.js/8.4/styles/monokai_sublime.min.css">-->
+<!--  <script type="text/javascript" src="http://apps.bdimg.com/libs/highlight.js/8.4/highlight.min.js"></script>-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.5.0/styles/default.min.css">
+  <script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[Vue.js] URL뒤에 붙는 # | 시원한물냉의 사람 사는 이야기</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="[Vue.js] URL뒤에 붙는 #" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="URL에 왜 #이 붙는걸까?" />
+<meta property="og:description" content="URL에 왜 #이 붙는걸까?" />
+<link rel="canonical" href="http://localhost:4000/2019-06-14/Vue-URL/" />
+<meta property="og:url" content="http://localhost:4000/2019-06-14/Vue-URL/" />
+<meta property="og:site_name" content="시원한물냉의 사람 사는 이야기" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-06-14T00:00:00+09:00" />
+<script type="application/ld+json">
+{"description":"URL에 왜 #이 붙는걸까?","@type":"BlogPosting","url":"http://localhost:4000/2019-06-14/Vue-URL/","headline":"[Vue.js] URL뒤에 붙는 #","dateModified":"2019-06-14T00:00:00+09:00","datePublished":"2019-06-14T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019-06-14/Vue-URL/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+
+  <!-- Google Analytics -->
+
+<!--<script>-->
+<!--(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){-->
+<!--  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),-->
+<!--  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)-->
+<!--})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');-->
+
+<!--ga('create', '', 'auto');-->
+<!--ga('send', 'pageview');-->
+
+<!--</script>-->
+
+
+
+</head>
+
+<body>
+  <div class="content-container">
+    <header>
+  <div class="header-small">
+    <a href="http://localhost:4000">시원한물냉의 사람 사는 이야기</a>
+  </div>
+</header>
+<div class="post">
+  <div class="post-title">[Vue.js] URL뒤에 붙는 #</div>
+  <span class="post-date">
+    <time>14 Jun 2019</time>
+  </span>
+  <div class="post-tag">
+    <ul>
+      
+      <li>
+        <a href="http://localhost:4000/tags#FrontEnd">
+          <span>FrontEnd</span>
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="http://localhost:4000/tags#Vue.js">
+          <span>Vue.js</span>
+        </a>
+      </li>
+      
+      
+    </ul>
+  </div>
+
+  <h2 id="srcrouterindexjs">src/router/index.js</h2>
+<p>위 파일을 열어보면 아래 소스를 확인할 수 있다. (구조에 따라 다를 수 있음)</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Router</span><span class="p">({</span>
+  <span class="na">routes</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="na">path</span><span class="p">:</span> <span class="s1">'/'</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="s1">'HelloWorld'</span><span class="p">,</span>
+      <span class="na">component</span><span class="p">:</span> <span class="nx">HelloWorld</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">router</span>
+</code></pre></div></div>
+
+<p>Vue.js는 mode설정을 하지않으면 기본적으로 <code class="highlighter-rouge">hash</code>모드로 동작한다.
+(이 경우 ‘http://example.com/#/’ 과 같이 URL 뒤에 #이 붙는다.)</p>
+
+<p>이 mode를 <code class="highlighter-rouge">history</code>로 바꿔주면 URL뒤에 #이 사라진 모습을 볼 수 있다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Router</span><span class="p">({</span>
+  <span class="na">mode</span><span class="p">:</span> <span class="s1">'history'</span><span class="p">,</span>
+  <span class="na">routes</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="na">path</span><span class="p">:</span> <span class="s1">'/'</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="s1">'HelloWorld'</span><span class="p">,</span>
+      <span class="na">component</span><span class="p">:</span> <span class="nx">HelloWorld</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">router</span>
+</code></pre></div></div>
+
+<h2 id="mode-hash-vs-history-"><code class="highlighter-rouge">mode</code> hash vs history ?</h2>
+<p><strong>hash</strong>
+모든 url을 hash형태로 서비스한다. URL이 변경될 때 페이지가 다시 로드 되지 않는다.</p>
+
+<p><strong>history</strong>
+페이지를 다시 로드하지 않고 URL을 탐색할 수 있다.
+SPA의 단일 페이지 클라이언트앱이기 때문에 사용자가 직접 <code class="highlighter-rouge">http://example.com/user/id</code> 에 접속하면 404오류가 발생한다.</p>
+
+<h2 id="history모드에서-404오류-해결방법">history모드에서 404오류 해결방법</h2>
+<p>URL접속 시 동일한 index.html 페이지를 제공해야 한다. nginx 설정으로 변경 가능.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">location</span> <span class="o">/</span> <span class="p">{</span>
+  <span class="nx">try_files</span> <span class="nx">$uri</span> <span class="nx">$uri</span><span class="o">/</span> <span class="sr">/index.html</span><span class="err">;
+</span><span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+<ul>
+  <li>참고
+    <ol>
+      <li>https://router.vuejs.org/kr/guide/essentials/history-mode.html#%EC%84%9C%EB%B2%84-%EC%84%A4%EC%A0%95-%EC%98%88%EC%A0%9C</li>
+    </ol>
+  </li>
+</ul>
+
+
+  <!-- Disqus -->
+  
+  <div class="post-disqus">
+      <section id="disqus_thread"></section>
+      <script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//cjstk7168.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  </div>
+  
+
+</div>
+
+
+    <!-- Documents about icons are here: http://fontawesome.io/icons/ -->
+<div class="footer">
+  <hr />
+  <div class="footer-link">
+    
+	
+	
+	
+	
+
+    
+
+    
+	
+	
+	
+	
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+
+    
+
+    
+
+    
+    <a href="mailto:kissob4905@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+    
+
+  </div>
+  © 2019 cjstk7168. All rights reserved.
+</div>
+
+  </div>
+</body>
+</html>

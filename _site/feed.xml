@@ -1,9 +1,271 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>시원한물냉의 사람사는 이야기</title>
+    <title>시원한물냉의 사람 사는 이야기</title>
     <link>http://localhost:4000</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>[Vue.js] URL뒤에 붙는 #</title>
+        <description>&lt;h2 id=&quot;srcrouterindexjs&quot;&gt;src/router/index.js&lt;/h2&gt;
+&lt;p&gt;위 파일을 열어보면 아래 소스를 확인할 수 있다. (구조에 따라 다를 수 있음)&lt;/p&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;router&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Router&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'HelloWorld'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;component&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;HelloWorld&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;router&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Vue.js는 mode설정을 하지않으면 기본적으로 &lt;code class=&quot;highlighter-rouge&quot;&gt;hash&lt;/code&gt;모드로 동작한다.
+(이 경우 ‘http://example.com/#/’ 과 같이 URL 뒤에 #이 붙는다.)&lt;/p&gt;
+
+&lt;p&gt;이 mode를 &lt;code class=&quot;highlighter-rouge&quot;&gt;history&lt;/code&gt;로 바꿔주면 URL뒤에 #이 사라진 모습을 볼 수 있다.&lt;/p&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;router&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Router&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'history'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;routes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'HelloWorld'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;component&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;HelloWorld&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;router&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;mode-hash-vs-history-&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mode&lt;/code&gt; hash vs history ?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;hash&lt;/strong&gt;
+모든 url을 hash형태로 서비스한다. URL이 변경될 때 페이지가 다시 로드 되지 않는다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;history&lt;/strong&gt;
+페이지를 다시 로드하지 않고 URL을 탐색할 수 있다.
+SPA의 단일 페이지 클라이언트앱이기 때문에 사용자가 직접 &lt;code class=&quot;highlighter-rouge&quot;&gt;http://example.com/user/id&lt;/code&gt; 에 접속하면 404오류가 발생한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;history모드에서-404오류-해결방법&quot;&gt;history모드에서 404오류 해결방법&lt;/h2&gt;
+&lt;p&gt;URL접속 시 동일한 index.html 페이지를 제공해야 한다. nginx 설정으로 변경 가능.&lt;/p&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;try_files&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$uri&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$uri&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/index.html&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;참고
+    &lt;ol&gt;
+      &lt;li&gt;https://router.vuejs.org/kr/guide/essentials/history-mode.html#%EC%84%9C%EB%B2%84-%EC%84%A4%EC%A0%95-%EC%98%88%EC%A0%9C&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 14 Jun 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2019-06-14/Vue-URL/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-06-14/Vue-URL/</guid>
+      </item>
+    
+      <item>
+        <title>코드리뷰에서 사용하는 용어들</title>
+        <description>&lt;h4 id=&quot;코드리뷰를-받게되면-혹은-다른사람의-코드리뷰를-보다보면-알-수-없는-용어들이-많다그래서-정리해보았다&quot;&gt;코드리뷰를 받게되면 혹은 다른사람의 코드리뷰를 보다보면 알 수 없는 용어들이 많다.&lt;br /&gt;그래서 정리해보았다.&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;LGTM&lt;/code&gt; (Looks Good To Me) : 나에게 좋아 보인다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;PTAL&lt;/code&gt; (Please Talk Another Look) : 누군가 저에게 말좀 해주세요.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;SGTM&lt;/code&gt; (Sounds Good To Me) : 나에게 좋아 보인다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;IMHO&lt;/code&gt; : 나의 의견에는..&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;BTW&lt;/code&gt; (By The Way)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 13 Jun 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2019-06-13/%EC%BD%94%EB%93%9C%EB%A6%AC%EB%B7%B0-%EC%9A%A9%EC%96%B4%EB%93%A4/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-06-13/%EC%BD%94%EB%93%9C%EB%A6%AC%EB%B7%B0-%EC%9A%A9%EC%96%B4%EB%93%A4/</guid>
+      </item>
+    
+      <item>
+        <title>[Vue.js] Mixins 사용하기</title>
+        <description>&lt;h2 id=&quot;믹스인&quot;&gt;믹스인&lt;/h2&gt;
+&lt;p&gt;Mixins는 Vue 컴포넌트에 재사용 가능을 배포하는 유연한 방법입니다. mixin 객체는 모든 구성요소 옵션을 포함할 수 있습니다. 컴포넌트에 mixin을 사용하면 해당 mixin의 모든 옵션이 컴토넌트의 고유 옵션에 “혼합”됩니다.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// mixin 객체 생성&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myMixin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;created&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;methods&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'hello from mixin!'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// mixin을 사용할 컴포넌트 정의&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Vue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;extend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;mixins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;myMixin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;component&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Component&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// =&amp;gt; &quot;hello from mixin!&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;참고
+    &lt;ol&gt;
+      &lt;li&gt;https://kr.vuejs.org/v2/guide/mixins.html&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 11 Jun 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2019-06-11/Vue-Mixins/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-06-11/Vue-Mixins/</guid>
+      </item>
+    
+      <item>
+        <title>JWT Token 사용하기</title>
+        <description>&lt;h2 id=&quot;jwt-json-web-token&quot;&gt;JWT (JSON Web Token)&lt;/h2&gt;
+&lt;p&gt;JSON Web Token (JWT)는 웹표준으로 두 개체에서 JSON 객체를 사용하여 안정성 있게 통신하는것을 지원한다.&lt;/p&gt;
+
+&lt;p&gt;거의 대부분의 언어 (Java, C, Python, C++, PHP, JavaScript-node, Go, Swift, Ruby 등)에서 JWT를 지원하고 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;사용처&quot;&gt;사용처&lt;/h2&gt;
+&lt;p&gt;가장 많이 사용되는 상황으로는&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;회원인증 : 사용자가 로그인을하면 서버는 유저의 정보를 JWT를 기반한 토큰을 발행하여 서버는 클라이언트에게 전달하고 그 데이터를 사용하여 정상회원임을 인증한다.
+사용자가 어떠한 작업을 요청할 때마다 JWT토큰이 유효한지 만료가 되지 않았는지 권한이 있는지 등을 체크한다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;외부 매체와의 통신 : A서버에서 B서버와 통신하기 위하여 JWT를 사용한다. 두 개체 사이에 안정성있고 보안을 유지하기 위하여 A서버는 통신할 데이터를 JWT형태로 만들어 B서버로 전달한다. 이를 통해 데이터가 중간에 바뀌지 않았는지, 유효한 데이터인지 등의 검증이 가능하다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;jwt-너는-어떻게-생겼니&quot;&gt;JWT 너는 어떻게 생겼니&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;AAAAA.BBBB.CCCC&lt;/code&gt;
+위와같이 JWT는 ‘.’(dot)을 기준으로 Header, Payload, Signature 3개로 분리된다.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Header
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+  &quot;alg&quot;: &quot;HS256&quot;,
+  &quot;typ&quot;: &quot;JWT&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;헤더는 암호화 방식과 어떤 타입인지를 명시해준다. HMAC SHA256혹은 RSA등이 주로 사용된다.
+이곳에 명시된 알고리즘을 이용하여 추후 signature를 생성한다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Payload
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{
+  &quot;user_id&quot;: 1,
+  &quot;age&quot;: 26,
+  &quot;name&quot;: &quot;홍길동&quot;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;Payload에는 실제 통신할 데이터가 들어간다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Signature
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;HMACSHA256(
+base64UrlEncode(header) + '.' +
+base64UrlEncode(payload),
+secret)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;Header를 Base64인코딩 + ‘.’ + Payload를 Base64인코딩 한 후 secret_key를 이용하여 HMAC SHA256으로 암호화해준다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;그리고 각각 생성된 Header + ‘.’ + Payload + ‘.’ + Signature를 이어주면 JWT 완성&lt;/p&gt;
+
+&lt;h2 id=&quot;node를-이용한-jwt-만들기&quot;&gt;Node를 이용한 JWT 만들기&lt;/h2&gt;
+&lt;p&gt;Payload&lt;/p&gt;
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;encodedPayload&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stringify&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+                            &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'base64'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+                            &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'='&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;''&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;위와같이 간단히 생성이 가능한다. (Header, Payload) 이 정보를 이용하여 Signature까지
+Signature생성 시 필요한 HMACSHA256은 node기본 내장모듈인 &lt;code class=&quot;highlighter-rouge&quot;&gt;crypto&lt;/code&gt;안에 함수가 있다. (&lt;code class=&quot;highlighter-rouge&quot;&gt;crypto.createHmac&lt;/code&gt;)&lt;/p&gt;
+
+&lt;p&gt;그런데 위와같이 구현하다보면 작업이 너무 많다.
+그래서 친절한 어떤 친절한 개발자분께서 오픈소스로 제공했다.
+&lt;code class=&quot;highlighter-rouge&quot;&gt;jsonwebtoken&lt;/code&gt; (url은 아래 참고에 첨부)&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;참고
+    &lt;ol&gt;
+      &lt;li&gt;https://jwt.io/&lt;/li&gt;
+      &lt;li&gt;https://www.npmjs.com/package/jsonwebtoken&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 11 Jun 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2019-06-11/JWT/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-06-11/JWT/</guid>
+      </item>
+    
+      <item>
+        <title>CDN 그건 왜 쓰는걸까?</title>
+        <description>&lt;h4 id=&quot;cdn이란&quot;&gt;CDN이란?&lt;/h4&gt;
+&lt;p&gt;CDN (Content Delivery Network)의 약자로 전 세계에서 분산되어있는 서버 네트워크를 말합니다. CDN은 사용자가 리소스를 다운할 수 있는 서버를 세계 각 지역에 퍼져있기 때문에 지연시간 감소로 인해 빠르게 컨텐츠의 요청/응답을 받을 수 있고, 다운로드를 제공함으로서 사용자에게 더 빠른 서비스를 할 수 있습니다.&lt;/p&gt;
+
+&lt;p&gt;출처 : &lt;a href=&quot;https://ko.wikipedia.org/wiki/%EC%BD%98%ED%85%90%EC%B8%A0_%EC%A0%84%EC%86%A1_%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC&quot;&gt;위키 요약&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;만약 유럽에 있는 국가가 한국서버를 이용할 경우 물리적인 거리로 인해 요청/응답 속도가 늦어질 수 밖에 없습니다.
+이런 경우 유럽 요청자의 근처의 위치의 CDN 서버에 복사하여 유럽사용자에게 더 빠른 연결, 속도를 보장할 수 있습니다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;gslb-global-server-load-balance&quot;&gt;GSLB (Global server Load Balance)&lt;/h4&gt;
+&lt;p&gt;사용자에게 컨텐츠요청이 있는 경우 가장 최적의(가장 근접의 혹은 트래픽여유가 많은) 서버환경을 찾아주는 역할을 한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;DNS와 GSLB의 차이점&lt;/strong&gt;&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;strong&gt;DNS&lt;/strong&gt;&lt;br /&gt;
+– 서버의 상태를 알 수 없기 때문에 서비스가 정상/중단 여부를 모른다.&lt;br /&gt;
+– Round Robin을 이용한 로드밸런싱으로 지역과 떨어진 지역의 서버와도 네트워크를 연결한다.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;GSLB&lt;/strong&gt;&lt;br /&gt;
+– 서버의 상태를 알 수 있어서 정상으로 작동하는 서버를 찾아낸다. &lt;br /&gt;
+– Round Robin방식은 동일하나 서버의 트래픽을 분석하고 근접한 서버를 찾아내어 부하를 분산시켜준다.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;h4 id=&quot;cdn의-캐싱방식&quot;&gt;CDN의 캐싱방식&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;Static Caching
+    &lt;ul&gt;
+      &lt;li&gt;origin서버의 리소스를 CDN서버에 미리 복사해놓는 방식.&lt;/li&gt;
+      &lt;li&gt;사용자가 요청 시 무조건 CDN서버에서 리소스를 가져온다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Dynamic Caching
+    &lt;ul&gt;
+      &lt;li&gt;사용자가 리소스 요청 시 CDN서버를 조회한 후 리소스가 없다면 origin서버에서 가져오고 CDN서버에 리소스를 복사해둔다. (Contents Sync)&lt;/li&gt;
+      &lt;li&gt;일정시간(TTL)이 지나도 사용이 없으면 CDN서버의 리소스를 삭제한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;참고
+    &lt;ol&gt;
+      &lt;li&gt;https://goddaehee.tistory.com/173&lt;/li&gt;
+      &lt;li&gt;https://cloud.google.com/cdn/docs/overview?hl=ko&lt;/li&gt;
+      &lt;li&gt;https://cloud.google.com/load-balancing/?hl=ko&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 06 Jun 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2019-06-06/CDN-%EA%B7%B8%EA%B1%B4-%EC%99%9C-%EC%93%B0%EB%8A%94%EA%B1%B8%EA%B9%8C/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-06-06/CDN-%EA%B7%B8%EA%B1%B4-%EC%99%9C-%EC%93%B0%EB%8A%94%EA%B1%B8%EA%B9%8C/</guid>
+      </item>
     
       <item>
         <title>늅뉴비의 GCP 컨퍼런스 기웃거리기</title>
