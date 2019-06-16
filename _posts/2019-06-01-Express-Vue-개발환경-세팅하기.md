@@ -77,9 +77,13 @@ port : (frontend : 8080, backend: 3000)
 ```console
 proxyTable: {
     '/api': {
-        target: 'http://localhost:3000/api'
+        target: 'http://localhost:3000/api',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
     }
-}
+},
 ```
 위와같이 설정해주면 frontend에서 :8080/api/.. 와같이 시작하는 url은  
 backend의 :3000/api/.. 로 proxy해준다.
