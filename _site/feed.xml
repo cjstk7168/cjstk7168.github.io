@@ -6,6 +6,141 @@
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Git branch 병합하기</title>
+        <description>&lt;h2 id=&quot;github-merge와-rebase-이해하기&quot;&gt;Github merge와 rebase 이해하기&lt;/h2&gt;
+&lt;p&gt;Github를 사용하다보면 branch를 생성하고 add, commit, merge, rebase, push.. 뭔가 할일이 많다.&lt;br /&gt;
+공부해야할게 많다. 그 중 병합에 대해 오늘은 끄적여보고자 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;merge&lt;/code&gt;와 &lt;code class=&quot;highlighter-rouge&quot;&gt;rebase&lt;/code&gt; 둘 다 2개의 branch를 병합하는 방법이다. 뭐가 다를까?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;merge&quot;&gt;Merge&lt;/h2&gt;
+&lt;p&gt;간단한 그림으로 알아보고자 한다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;그림처럼 commit 상태가 있다고 가정해본다.&lt;br /&gt;
+이 상태에서 master에서 새로운 feature branch를 생성하여 추가로 작업을 하였다.
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$git checkout -b feature/sample
+$git commit -m &quot;commit a&quot;
+$git commit -m &quot;commit b&quot; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;그러면 현재의 git object의 상태는 그림과 같다.&lt;br /&gt;
+&lt;img src=&quot;/images/post_6/merge_1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;그런데 Master branch에 문제가 생겼다. Hotfix를 해야하는 상황이 생긴것이다.
+그래서 그림과 같이 새로운 branch를 생성하여 작업하고 Master와 다시 병합하였다.
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$git checkout master
+$git checkout -b hotfix/typo-err
+$git commit -m &quot;hotfix&quot;
+$git checkout master
+$git merge hotfix/typo-err
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;/images/post_6/merge_2.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;그럼 위와같이 HEAD가 이동하였고, cli에는 &lt;code class=&quot;highlighter-rouge&quot;&gt;fast-worward&lt;/code&gt;라는 내용을 확인할 수 있다.&lt;br /&gt;
+빨리감기 라고도 하며 branch의 head가 이동했다는것을 의미한다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;이 상태에서 이제 개발이 완료된 feature/sample branch를 master와 병합하고자 한다.
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$git checkout master
+$git merge sample-branch 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;/images/post_6/merge_3.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;위와같이 merge를 하게되면 새로운 커밋이 생성되며 갈래가 나갔다가 다시 합쳐지는 형태로 생성되며
+새로운 commit이 자동으로 생성된다. (위 그림에서 xxx 커밋)
+이러한 형태를 &lt;code class=&quot;highlighter-rouge&quot;&gt;3-way Merge&lt;/code&gt;라고 부른다.&lt;/p&gt;
+
+&lt;h2 id=&quot;rebase&quot;&gt;Rebase&lt;/h2&gt;
+&lt;p&gt;간단한 그림으로 알아보고자 한다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Merge와 동일하게 commit 상태가 있다고 가정해본다.
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$git checkout -b feature/sample
+$git commit -m &quot;commit a&quot;
+$git commit -m &quot;commit b&quot; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;/images/post_6/rebase_1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이번에도 Master branch에 문제가 생겨서 hotfix를 하였다.
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$git checkout master
+$git checkout -b hotfix/typo-err
+$git commit -m &quot;hotfix&quot;
+$git rebase master
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;/images/post_6/rebase_2.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이 상태에서 이제 개발이 완료된 feature/sample branch를 master와 병합(이번엔 rebase)하고자 한다.
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$git rebase master 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;img src=&quot;/images/post_6/rebase_3.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;feature/sample&lt;/code&gt;의 branch꼬리를 master에 가져다 붙였다. 이제 master에서 merge를 하면
+깔끔하게 &lt;code class=&quot;highlighter-rouge&quot;&gt;fast-forward&lt;/code&gt;가 이루어 진다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/post_6/rebase_4.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;결론&quot;&gt;결론&lt;/h2&gt;
+&lt;p&gt;merge보다 rebase가 이력관리가 더 깔끔하다. (가지가 나갔다가 들어갔다가 하지않기 때문에).
+때문에 실무에서는 rebase가 대부분 사용하고 있는데, 어떤 차이가 있는지 왜 rebase를 쓰는지
+조금이나마 이 글을 정리하면서 이해가 되었다.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;참고
+    &lt;ol&gt;
+      &lt;li&gt;https://cyberx.tistory.com/96&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 02 Jul 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2019-07-02/Github-merge-rebase/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-07-02/Github-merge-rebase/</guid>
+      </item>
+    
+      <item>
+        <title>Git branch 종류와 명명규칙</title>
+        <description>&lt;h2 id=&quot;github-branch-종류&quot;&gt;Github branch 종류&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Master&lt;/code&gt;
+&lt;strong&gt;배포 Release(Prod) 버전의 소스가 들어있는 branch&lt;/strong&gt;
+기본적으로 github 저장소를 생성하면 있는 branch이다. 배포이력을 관리하기 위한 용도로 사용한다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Develop&lt;/code&gt;
+&lt;strong&gt;개발버전의 소스가 들어있는 branch&lt;/strong&gt;
+일반적으로 Master branch에 병합하기 전 최종 개발버전의 소스가 들어있다.
+다음 Release될 버전의 소스라고 생각하면 된다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Feature&lt;/code&gt;
+&lt;strong&gt;기능을 개발중인 branch&lt;/strong&gt;
+개발자들이 기능개발을 위하여 생성/이용 하는 branch이다. 개발이 완료되면 develop와 병합하여 다른 사람들과 공유한다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Hotfix&lt;/code&gt;
+&lt;strong&gt;Master branch의 오류사항을 수정하는 branch&lt;/strong&gt;
+Feature &amp;gt; Develop &amp;gt; Master의 병합순이 아니라 Master에서 급하게 수정해야하는 경우에 사용한다.
+Master에서 직접 branch를 분기하여 생성하며 수정 후 Develop가 아닌 Master에 병합하여 배포한다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Fri, 21 Jun 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2019-06-21/Github-branch-%E1%84%8C%E1%85%A9%E1%86%BC%E1%84%85%E1%85%B2/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-06-21/Github-branch-%E1%84%8C%E1%85%A9%E1%86%BC%E1%84%85%E1%85%B2/</guid>
+      </item>
+    
+      <item>
         <title>[Vue.js] URL뒤에 붙는 #</title>
         <description>&lt;h2 id=&quot;srcrouterindexjs&quot;&gt;src/router/index.js&lt;/h2&gt;
 &lt;p&gt;위 파일을 열어보면 아래 소스를 확인할 수 있다. (구조에 따라 다를 수 있음)&lt;/p&gt;
