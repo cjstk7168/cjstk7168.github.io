@@ -97,5 +97,5 @@ merge보다 rebase가 이력관리가 더 깔끔하다. (가지가 나갔다가 
 
 
 ---
-* 참고  
+* References  
 1. https://cyberx.tistory.com/96

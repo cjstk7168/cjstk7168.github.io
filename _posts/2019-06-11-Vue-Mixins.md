@@ -34,5 +34,5 @@ var component = new Component() // => "hello from mixin!"
 ```
 
 ---
-* 참고  
+* References  
 1. https://kr.vuejs.org/v2/guide/mixins.html

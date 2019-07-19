@@ -193,7 +193,7 @@ $git rebase master
 
 &lt;hr /&gt;
 &lt;ul&gt;
-  &lt;li&gt;참고
+  &lt;li&gt;References
     &lt;ol&gt;
       &lt;li&gt;https://cyberx.tistory.com/96&lt;/li&gt;
     &lt;/ol&gt;
@@ -288,7 +288,7 @@ SPA의 단일 페이지 클라이언트앱이기 때문에 사용자가 직접 &
 
 &lt;hr /&gt;
 &lt;ul&gt;
-  &lt;li&gt;참고
+  &lt;li&gt;References
     &lt;ol&gt;
       &lt;li&gt;https://router.vuejs.org/kr/guide/essentials/history-mode.html#%EC%84%9C%EB%B2%84-%EC%84%A4%EC%A0%95-%EC%98%88%EC%A0%9C&lt;/li&gt;
     &lt;/ol&gt;
@@ -344,7 +344,7 @@ SPA의 단일 페이지 클라이언트앱이기 때문에 사용자가 직접 &
 
 &lt;hr /&gt;
 &lt;ul&gt;
-  &lt;li&gt;참고
+  &lt;li&gt;References
     &lt;ol&gt;
       &lt;li&gt;https://kr.vuejs.org/v2/guide/mixins.html&lt;/li&gt;
     &lt;/ol&gt;
@@ -424,7 +424,7 @@ Signature생성 시 필요한 HMACSHA256은 node기본 내장모듈인 &lt;code 
 
 &lt;hr /&gt;
 &lt;ul&gt;
-  &lt;li&gt;참고
+  &lt;li&gt;References
     &lt;ol&gt;
       &lt;li&gt;https://jwt.io/&lt;/li&gt;
       &lt;li&gt;https://www.npmjs.com/package/jsonwebtoken&lt;/li&gt;
@@ -486,7 +486,7 @@ Signature생성 시 필요한 HMACSHA256은 node기본 내장모듈인 &lt;code 
 
 &lt;hr /&gt;
 &lt;ul&gt;
-  &lt;li&gt;참고
+  &lt;li&gt;References
     &lt;ol&gt;
       &lt;li&gt;https://goddaehee.tistory.com/173&lt;/li&gt;
       &lt;li&gt;https://cloud.google.com/cdn/docs/overview?hl=ko&lt;/li&gt;
