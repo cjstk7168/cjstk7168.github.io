@@ -2,36 +2,20 @@
 layout: default
 ---
 
-<header class="header">
-  <div class="header-title">
-    <a href="{{ site.url }}{{ site.baseurl }}">{{ site.name }}</a>
-  </div>
-  <nav class="header-nav">
-    {% for nav in site.nav %}
-    {% if nav.url contains 'http://' or nav.url contains 'https://' %}
-    <a href="{{ nav.url }}">{{ nav.name }}</a>
-    {% else %}
-    <a href="{{ nav.url | prepend: site.baseurl }}">{{ nav.name }}</a>
-    {% endif %}
-    {% endfor %}
-  </nav>
-</header>
-
-<div class="site-category">
-  <ul>
-
-    {% assign pages_list = site.pages %}
-    {% for node in pages_list %}
-    {% if node.title != null %}
-    {% if node.layout == "category" %}
-    <li><a class="category-link {% if page.url == node.url %} active{% endif %}"
-           href="{{ site.baseurl }}{{ node.url }}">{{ node.title }}</a></li>
-    {% endif %}
-    {% endif %}
-    {% endfor %}
-
-  </ul>
-</div>
+<!--<header class="header">-->
+<!--  <div class="header-title">-->
+<!--    <a href="{{ site.url }}{{ site.baseurl }}">{{ site.name }}</a>-->
+<!--  </div>-->
+<!--  <nav class="header-nav">-->
+<!--    {% for nav in site.nav %}-->
+<!--    {% if nav.url contains 'http://' or nav.url contains 'https://' %}-->
+<!--    <a href="{{ nav.url }}">{{ nav.name }}</a>-->
+<!--    {% else %}-->
+<!--    <a href="{{ nav.url | prepend: site.baseurl }}">{{ nav.name }}</a>-->
+<!--    {% endif %}-->
+<!--    {% endfor %}-->
+<!--  </nav>-->
+<!--</header>-->
 
 <div class="list">
 {% if site.posts.size == 0 %}

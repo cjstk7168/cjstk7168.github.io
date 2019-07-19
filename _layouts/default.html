@@ -3,9 +3,45 @@
 {% include head.html %}
 <body>
   <div class="content-container">
-    {{ content }}
+    <div class="row">
+      <div class="col-md-12 col-xs-12">
+        <div class="header">
+          <div class="header-title">
+            <a href="{{site.url}}{{site.baseurl}}">{{ site.name }}</a>
+          </div>
+        </div>
+      </div>
 
-    {% include footer.html %}
+      <div class="col-md-3 col-xs-12">
+        <div class="site-category">
+          <h6>categories..</h6>
+          <ul>
+
+            {% assign pages_list = site.pages %}
+            {% for node in pages_list %}
+            {% if node.title != null %}
+            {% if node.layout == "category" %}
+            <li>
+              <a class="category-link {% if page.url == node.url %} active{% endif %}"
+                   href="{{ site.baseurl }}{{ node.url }}">{{ node.title }}</a>
+            </li>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-xs-12">
+        {{ content }}
+      </div>
+
+      <div class="col-md-12 col-xs-12">
+        {% include footer.html %}
+      </div>
+    </div>
+
+
   </div>
 </body>
 </html>
