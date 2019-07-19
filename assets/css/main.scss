@@ -7,11 +7,6 @@ sitemap: false
 @import "highlighter";
 @import "site";
 
-.site-category {
-  position: fixed;
-  left: 20px;
-}
-
 pre.highlight {
   background: #000;
   padding: 1px;
@@ -19,10 +14,4 @@ pre.highlight {
 
 code.hljs {
   background: #f5f5f5;
-}
-
-@media screen and (max-width: 768px) {
-  .site-category {
-    display: none;
-  }
 }

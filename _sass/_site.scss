@@ -13,17 +13,38 @@ html {
 html,
 body {
   margin: 0;
-  padding: 0;
+  //padding: 0;
+  padding-bottom: 3rem;
 }
 
 .content-container {
-  max-width: 48rem;
+//  max-width: 48rem;
   padding: 5rem 1rem;
-  margin-left:  auto;
-  margin-right: auto;
+//  margin-left:  auto;
+//  margin-right: auto;
+//
+//  @media (max-width: 48rem){
+//    padding: 2rem 1.3rem;
+//  }
+}
 
-  @media (max-width: 48rem){
-    padding: 2rem 1.3rem;
+/*--------------
+  Category
+  -------------- */
+
+ul>li:before {
+  content: '';
+}
+
+.site-category {
+  position: fixed;
+
+  ul {
+    list-style: none;
+  }
+
+  @media (max-width: 767px) {
+    position: relative;
   }
 }
 
@@ -32,17 +53,22 @@ body {
   Header
   -------------- */
 .header {
-  padding: 2%;
-  margin-bottom: 1.5em;
+  border-bottom: 1px solid #eeeeee;
+  height: 3rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #FFF;
+  z-index: 10;
 
   &-title {
-    margin: 0.3em 0;
-    font-size: 2.25em;
+    margin: 0.4em 2rem;
+    font-size: 1.2em;
     line-height: 1.2em;
     font-weight: 600;
 
     a {
-      color: $base-color;
+      color: $header-title;
       &:hover,
       &:focus {
         text-decoration: none;
@@ -109,6 +135,7 @@ body {
   Post
   -------------- */
 .post {
+  padding-top: 3rem;
 
   &-title {
     margin-top: 0rem;
