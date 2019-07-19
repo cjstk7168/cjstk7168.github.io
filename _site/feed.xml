@@ -6,6 +6,104 @@
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>REST-API 설계하기</title>
+        <description>&lt;h2 id=&quot;rest&quot;&gt;REST&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Representational State Transfer&lt;/code&gt;의 약자로 월드 와이드 웹(www)의 기술과 HTTP프로토콜을 그대로 활용하여 웹의 장점을 최대한 활용할 수 있는 아키텍처 기술이다.&lt;/li&gt;
+  &lt;li&gt;HTTP URI&lt;code class=&quot;highlighter-rouge&quot;&gt;(Uniform Resource Identifier)&lt;/code&gt;를 통해 자원을 명시하고, HTTP 메소드를 통해 해당 자원을 CRUD하는것을 의미한다.&lt;/li&gt;
+  &lt;li&gt;공식적으로 표준화된 표준규약이 없다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;rest-api&quot;&gt;REST API&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;위 설명한 &lt;code class=&quot;highlighter-rouge&quot;&gt;REST&lt;/code&gt;기반으로 서비스의 API를 제공하는 것.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;rest-api-설계-규칙&quot;&gt;REST API 설계 규칙&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;URI만으로 어떤 정보를 제공할 것인지 명확해야 한다.
+    &lt;ul&gt;
+      &lt;li&gt;동사를 사용하지 않는다. 명사를 사용하며 이 때에도 &lt;strong&gt;단수명사&lt;/strong&gt;를 사용한다.&lt;/li&gt;
+      &lt;li&gt;ex) GET : /user/1 (ok)&lt;/li&gt;
+      &lt;li&gt;ex) GET : /users/1 (err)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;HTTP행위에 맞게 사용한다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;약어&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;C&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;R&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;U&lt;/th&gt;
+          &lt;th style=&quot;text-align: center&quot;&gt;D&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;-&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;Create&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;Read&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;Update&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;Delete&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;의미&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;생성&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;조회&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;수정&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;삭제&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;HTTP&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;post&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;get&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;put&lt;/td&gt;
+          &lt;td style=&quot;text-align: center&quot;&gt;delete&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;URI에 HTTP Method가 들어가지 않는다.
+    &lt;ul&gt;
+      &lt;li&gt;ex) GET : /user/1 (ok)&lt;/li&gt;
+      &lt;li&gt;ex) GET : /user/get/1 (err)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;최대한 사용을 자제해야하지만 불가피하게 단어가 길어질 경우 - 하이픈을 사용한다.&lt;/li&gt;
+  &lt;li&gt;HTTP response CODE는 HTTP문서를 따른다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;https://ko.wikipedia.org/wiki/HTTP_%EC%83%81%ED%83%9C_%EC%BD%94%EB%93%9C&quot;&gt;HTTP 상태코드 확인&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;restful&quot;&gt;RESTful&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;REST에서 설명하였듯이 공식적으로 표준화된 규약이 없다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;REST API&lt;/code&gt;를 제공하는 서비스를 RESTful하다고 부른다. (필자마다 개념이 조금씩 다를 수 있다.)&lt;/li&gt;
+  &lt;li&gt;이해하기 쉬운 REST API를 설계하는것에 목적이 있다.&lt;/li&gt;
+  &lt;li&gt;RESTful한 API는 성능향상의 목적이 아니기 때문에 최대한 일관성있고 명확하게 설계해야한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;ul&gt;
+  &lt;li&gt;References
+    &lt;ol&gt;
+      &lt;li&gt;https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html&lt;/li&gt;
+      &lt;li&gt;https://bcho.tistory.com/954&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 19 Jul 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2019-07-19/restful-api/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-07-19/restful-api/</guid>
+      </item>
+    
+      <item>
         <title>Git branch 병합하기</title>
         <description>&lt;h2 id=&quot;github-merge와-rebase-이해하기&quot;&gt;Github merge와 rebase 이해하기&lt;/h2&gt;
 &lt;p&gt;Github를 사용하다보면 branch를 생성하고 add, commit, merge, rebase, push.. 뭔가 할일이 많다.&lt;br /&gt;
@@ -136,8 +234,8 @@ Master에서 직접 branch를 분기하여 생성하며 수정 후 Develop가 �
 &lt;/ol&gt;
 </description>
         <pubDate>Fri, 21 Jun 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2019-06-21/Github-branch-%E1%84%8C%E1%85%A9%E1%86%BC%E1%84%85%E1%85%B2/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019-06-21/Github-branch-%E1%84%8C%E1%85%A9%E1%86%BC%E1%84%85%E1%85%B2/</guid>
+        <link>http://localhost:4000/2019-06-21/Github-branch-%EC%A2%85%EB%A5%98/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-06-21/Github-branch-%EC%A2%85%EB%A5%98/</guid>
       </item>
     
       <item>
