@@ -9,28 +9,40 @@
           <div class="header-title">
             <a href="{{site.url}}{{site.baseurl}}">{{ site.name }}</a>
           </div>
+
         </div>
       </div>
 
       <div class="col-md-3 col-xs-12">
+
         <div class="site-category">
-          <h6>categories..</h6>
+          <div class="title">categories..</div>
+          <nav class="content-ul">
           <ul>
-
-            {% assign pages_list = site.pages %}
-            {% for node in pages_list %}
-            {% if node.title != null %}
-            {% if node.layout == "category" %}
-            <li>
-              <a class="category-link {% if page.url == node.url %} active{% endif %}"
-                   href="{{ site.baseurl }}{{ node.url }}">{{ node.title }}</a>
-            </li>
-            {% endif %}
-            {% endif %}
+              <li>
+                  <a href="/"
+                     class="sidebar-nav-item pl-3rem">
+                  <span class="name">
+                      All
+                  </span>
+                      <span class="badge">{{ site.posts.size }}</span>
+                  </a>
+              </li>
+            {% for category in site.categories %}
+              <li>
+                <a href="{{ root_url }}/{{ site.category_dir }}/{{ category | first }}"
+                   class="sidebar-nav-item pl-3rem">
+                  <span class="name">
+                      {{ category | first }}
+                  </span>
+                  <span class="badge">{{ category | last | size }}</span>
+                </a>
+              </li>
             {% endfor %}
-
           </ul>
+          </nav>
         </div>
+
       </div>
       <div class="col-md-6 col-xs-12">
         {{ content }}

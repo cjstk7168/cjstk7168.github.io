@@ -39,8 +39,22 @@ ul>li:before {
 .site-category {
   position: fixed;
 
+  .title {
+    font-weight: 600;
+  }
+
+  ol>li, ul>li {
+    margin: 0rem;
+    line-height: 1.2rem;
+  }
+
   ul {
     list-style: none;
+
+    a {
+      font-size: 0.8rem;
+      color: #000;
+    }
   }
 
   @media (max-width: 767px) {
