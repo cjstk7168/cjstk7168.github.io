@@ -3,7 +3,7 @@ layout: post
 title: "REST-API 설계하기"
 description: "더욱 명확한 REST-API 설계 방안"
 date: 2019-07-19
-categories: [Backend]
+categories: [HTTP]
 tags: [Backend, http, https, rest, network]
 comments: true
 share: true
