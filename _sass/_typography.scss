@@ -93,8 +93,8 @@ ul,
 dl {
   margin: 0 0 1em;
   padding: 0;
-  list-style: none;
-  list-style-image: none;
+  //list-style: none;
+  //list-style-image: none;
 }
 
 //  Positioning Bullets
@@ -124,18 +124,18 @@ ul {
 }
 
 // Restyle <ol>
-ol {
-  counter-reset: section;
-
-  > li:before {
-    counter-increment: section;
-    content: counter(section) ".";
-    padding-right: $ol-bullets-right-space;
-    font-family: $ol-bullets-font;
-    font-size: $ol-bullets-font-size;
-    line-height: $ol-bullets-font-line-height;
-  }
-}
+//ol {
+//  counter-reset: section;
+//
+//  > li:before {
+//    counter-increment: section;
+//    content: counter(section) ".";
+//    padding-right: $ol-bullets-right-space;
+//    font-family: $ol-bullets-font;
+//    font-size: $ol-bullets-font-size;
+//    line-height: $ol-bullets-font-line-height;
+//  }
+//}
 
 //  Refine Spacing
 ol, 
@@ -264,7 +264,7 @@ pre {
 }
 
 code {
-  padding: .25em .5em;
+  padding: .1em .3em;
   font-size: 85%;
   color: $code-color;
   background-color: $code-background-color;
