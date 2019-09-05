@@ -6,6 +6,184 @@
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>[GTM] Google Tag Manager를 이용한 마케팅 (기본)</title>
+        <description>&lt;h2 id=&quot;gtm이란&quot;&gt;GTM이란?&lt;/h2&gt;
+&lt;p&gt;사용자 액션 중심의 구글 마케팅 트래킹 툴&lt;/p&gt;
+
+&lt;p&gt;태그매니저가 등록된 이후에는 개발자의 큰 도움없이도 이벤트추가, 트리거추가 등이 가능하다.&lt;br /&gt;
+(웹에서 마우스클릭을 통해 작성)&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;GTM구조&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; - Account (회사 단위)
+     - Container (서비스 단위.. 웹, 안드로이드, 아이폰 등 분리해야함)
+         - Tag (어떤 시점에 어떤 정보를 전달할지를 결정)
+             - Trigger (어떤 `시점`을 결정)
+             - Variable (특정 `조건`을 설정)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;용어 정리&lt;br /&gt;
+ &lt;strong&gt;Trigger&lt;/strong&gt; : true, false을 판별하는 요소로 특정 조건에 Tags가 발송됨&lt;br /&gt;
+ &lt;strong&gt;Data Layer&lt;/strong&gt; : GTM에 전달하려는 데이터 모음&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;GTM Flow&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; 1. GTM code snippet추가
+ 2. 변수와 트리거 생성
+ 3. 태그 생성
+ 4. 미리보기를 통해 정상동작 확인
+ 5. Deploy
+ 6. 데이터 수집
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;gtm-세팅하기&quot;&gt;GTM 세팅하기&lt;/h2&gt;
+&lt;h4 id=&quot;page-view-수집&quot;&gt;Page View 수집&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;구글 애널리틱스 GA 추적값 생성 (관리 -&amp;gt; 추적정보 -&amp;gt; 추적코드)  &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_step_1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;GTM 변수 등록                                    &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_step_2.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;태그 만들기                                     &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_step_3.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;미리보기 새로고침 후에 블로그를 새로고침 한다.  &lt;br /&gt;
+태그매니저 미리보기에 좀전에 설정한 태그를 볼 수 있다.  &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_step_4.png&quot; alt=&quot;image&quot; /&gt;  &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_step_5.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;완료되었다면 오른쪽 상단&lt;code class=&quot;highlighter-rouge&quot;&gt;제출&lt;/code&gt;을 눌러서 실 사용자에게 Live해준다    &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_step_6.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;완료!                                     &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_step_7.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;click-event-수집&quot;&gt;Click Event 수집&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;변수 설정                                   &lt;br /&gt;
+ 변수 -&amp;gt; 기본제공변수 구성 -&amp;gt; 클릭에 대한 정보를 체크하여 화성화해준다.    &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_click_1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;트리거 설정
+ &lt;code class=&quot;highlighter-rouge&quot;&gt;링크만&lt;/code&gt; : &lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;태그에 대해서만 추적한다.
+ &lt;code class=&quot;highlighter-rouge&quot;&gt;모든 요소&lt;/code&gt; : 모든 페이지 이동에 대하여 추적한다. (설정에 따라 모든 클릭 중 특정 클릭만 추적도 가능하다.)  &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_click_2.png&quot; alt=&quot;image&quot; /&gt;    &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_click_3.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;새로고침하여 블로그에서 클릭 이벤트를 확인해본다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;image-click-추적-수집&quot;&gt;Image Click 추적 수집&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. Click Element 설정으로 유니크한 값을 관리할 수 있다.         
+![image](/images/post_10_gtm/setting_image_1.png)      
+유니크한 값으로는 id &amp;gt; class &amp;gt; selector 순으로 정한다.     
+이마저도 없는경우 어쩔 수 없이 url을 사용한다.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Click URL&lt;/code&gt;값으로 트리거에 등록한다.                 &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_image_2.png&quot; alt=&quot;image&quot; /&gt;      &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_image_3.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;모든 클릭이 아닌 &lt;code class=&quot;highlighter-rouge&quot;&gt;일부 클릭&lt;/code&gt;을 선택 후 Path, Url등을 설정할 수 있다.        &lt;br /&gt;
+ 연산자를 여러개 지정하고 &lt;code class=&quot;highlighter-rouge&quot;&gt;And&lt;/code&gt;조건으로 설정할 수 있다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;태그 만들기&lt;br /&gt;
+ &lt;strong&gt;참고로 트리거를 여러개 하면 &lt;code class=&quot;highlighter-rouge&quot;&gt;OR&lt;/code&gt;조건으로 동작한다.&lt;/strong&gt;  &lt;br /&gt;
+ 좀전에 생성한 트리거를 선택한다.                   &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_image_4.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;태그는 &lt;code class=&quot;highlighter-rouge&quot;&gt;이벤트&lt;/code&gt;로 설정한다.                   &lt;br /&gt;
+ 라벨에 저장될 데이터를 설정한다.                             &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_image_5.png&quot; alt=&quot;image&quot; /&gt;           &lt;br /&gt;
+ &lt;code class=&quot;highlighter-rouge&quot;&gt;비 상호작용 조회&lt;/code&gt; : &lt;code class=&quot;highlighter-rouge&quot;&gt;false&lt;/code&gt;로 설정하면 페이지 이동에 대해 단일 세션이 아니라는 의미이다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;새로고침하여 결과를 확인한다.                              &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_image_6.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;마지막으로 GA에서 이벤트가 잘 들어오는지도 확인해본다.&lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_result_1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;visibility-상태-수집&quot;&gt;Visibility 상태 수집&lt;/h4&gt;
+&lt;p&gt;화면에 해당 정보가 나왔을 때 (사용자가 스크롤을 해당 위치에서 멈췄을 때)를 추적하기 위한 이벤트
+변수 &amp;gt; 기본제공변수 구성 &amp;gt; 공개상태를 설정해준다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;트리거 설정                        &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_visibility_1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;트리거 추가
+ 트리거 추가 &amp;gt; 트리거 구성을 &lt;code class=&quot;highlighter-rouge&quot;&gt;요소 공개 상태&lt;/code&gt;로 설정하고 이미지의 요소 selector을 붙여준다.    &lt;br /&gt;
+ (크롬 개발자도구에서 해당 이미지 태그에서 우클릭 &amp;gt; Copy &amp;gt; Copy Selector 선택)&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;최소비율표시&lt;/code&gt; : 페이지에서 해당 이미지가 최소 몇% 보여졌을 때 트리거가 동작할 지 설정한다.
+ &lt;code class=&quot;highlighter-rouge&quot;&gt;화면 표시 최소 시간&lt;/code&gt; : 해당 이미지가 화면에 최소 시간동안 보여졌을 때 추적&lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_visibility_2.png&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_visibility_3.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;virtual-page-view&quot;&gt;Virtual Page View&lt;/h4&gt;
+&lt;p&gt;웹사이트에서 페이지의 이동이 없을때에도 페이지 이동으로 이벤트 처리하는 방법, 혹은 탭뷰에 사용한다.&lt;br /&gt;
+(대표적인 예로 앵귤러로 개발한 페이지의 경우 url이 이동없음에도 페이지가 이동한다.)&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;해당 버튼에 반응하는 트리거를 생성한다              &lt;br /&gt;
+ 본 예제에서는 a태그 추적을 위하여 &lt;code class=&quot;highlighter-rouge&quot;&gt;링크만&lt;/code&gt;으로 설정한다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/images/post_10_gtm/setting_virtual_1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;태그 생성                                    &lt;br /&gt;
+ 재정의를 사용하여 클릭 시 새로운 입력값을 전달할 수 있다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/images/post_10_gtm/setting_virtual_2.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;결과 확인. 클릭 시 Link Click이 발생한다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/images/post_10_gtm/setting_virtual_3.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;정리하며&quot;&gt;정리하며..&lt;/h2&gt;
+&lt;p&gt;과거에 특정 이벤트마다/페이지마다 마케터의 요청에 따라 개발자가 GA이벤트를 설치했던 경험과는 달리 GTM을 사용하면 개발자는 &lt;code class=&quot;highlighter-rouge&quot;&gt;HEAD&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;BODY&lt;/code&gt;에 기본적인 태그만 심어주면 마케터가 필요한 이벤트나 PV에 대해 원하는 추적이 가능하다는점이 좋은 것 같다.&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 04 Sep 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2019-09-04/GTM-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-09-04/GTM-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB/</guid>
+      </item>
+    
+      <item>
         <title>[Github] package registry 이용하기</title>
         <description>&lt;h2 id=&quot;package-registry&quot;&gt;package registry&lt;/h2&gt;
 &lt;p&gt;2019년 5월 github에서 Package Registry를 공개했다.&lt;br /&gt;
