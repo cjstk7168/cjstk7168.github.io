@@ -6,6 +6,152 @@
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>[GTM] Google Tag Manager를 이용한 마케팅 (심화)</title>
+        <description>&lt;h2 id=&quot;gtm-tag-layer&quot;&gt;GTM tag Layer&lt;/h2&gt;
+&lt;p&gt;모든 이벤트 로그 변수값을 기록하는 공간 (저장소)&lt;br /&gt;
+페이지뷰 데이터레이어에 데이터 넣는 방법을 알아보자.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;script&amp;gt;
+dataLayer.push();
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;개발자콘솔에서-datalayer를-출력해보면-사진과-같이-보인다-이곳에-데이터를-추가해보자&quot;&gt;개발자콘솔에서 dataLayer를 출력해보면 사진과 같이 보인다. 이곳에 데이터를 추가해보자.&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/post_11_gtm/blog_step_1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;dataLayer.push({ 'animal': 'chicken' });&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/post_11_gtm/blog_step_2.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;가 보인다면 정상으로 처리되었다.&lt;/p&gt;
+
+&lt;p&gt;다시 &lt;code class=&quot;highlighter-rouge&quot;&gt;dataLayer&lt;/code&gt;를 출력해보면 방금 추가한 자료가 잘 들어있다.&lt;br /&gt;
+GTM 미리보기 창에서도 확인이 가능하다.&lt;br /&gt;
+&lt;img src=&quot;/images/post_11_gtm/blog_step_3.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;아래는 javaScript를 이용해서 dataLayer에 데이터를 추가하는 간단한 예제이다.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;script&amp;gt;
+dataLayer.push({ animal: 'dof'}); // Page로딩시 animal 값 세팅
+&amp;lt;/script&amp;gt;
+
+&amp;lt;p onclick=&quot;dataLayer.push({ animal: 'chicken' });&quot;&amp;gt;TEST 버튼&amp;lt;/p&amp;gt;
+// 버튼 클릭 시 value를 변경
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/post_11_gtm/blog_step_4.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;이제-이렇게-저장된-datalayer의-변수를-gtm에서-확인해보자&quot;&gt;이제 이렇게 저장된 dataLayer의 변수를 GTM에서 확인해보자&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;변수 &amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;사용자 정의 변수&lt;/code&gt; &amp;gt; 새로만들기&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;아까 &lt;code class=&quot;highlighter-rouge&quot;&gt;animal&lt;/code&gt;로 dataLayer에 담았으니 이름을 animal로 정한다.&lt;br /&gt;
+&lt;img src=&quot;/images/post_11_gtm/blog_step_5.png&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
+(버전1과 버전2의 차이)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/post_11_gtm/blog_step_6.png&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
+설정이 완료되었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/post_11_gtm/blog_step_7.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 예제를 사용하여 특정 과정을 거치고나서 버튼을 눌렀는지, 그냥 눌렀는지를 분리하여 분석이 가능하다. &lt;br /&gt;
+(와우!)&lt;/p&gt;
+
+&lt;h4 id=&quot;특정-입력폼에-있는-값을-이벤트를-통해-gtm에-쌓아보자&quot;&gt;특정 입력폼에 있는 값을 이벤트를 통해 GTM에 쌓아보자.&lt;/h4&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;form id=&quot;letter-submit&quot;&amp;gt;
+    &amp;lt;label for=&quot;user-mail&quot;&amp;gt;이메일&amp;lt;/label&amp;gt;
+    &amp;lt;input type=&quot;email&quot; id=&quot;user-mail&quot;&amp;gt;
+    &amp;lt;button type=&quot;submit&quot;&amp;gt;전송&amp;lt;/button&amp;gt;
+&amp;lt;/form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;form id=&quot;letter-submit&quot;&gt;
+    &lt;label for=&quot;user-mail&quot;&gt;이메일&lt;/label&gt;
+    &lt;input type=&quot;email&quot; id=&quot;user-mail&quot; /&gt;
+    &lt;button type=&quot;submit&quot;&gt;전송&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;p&gt;위의 소스를 실행해본다&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;GTM &amp;gt; 변수 &amp;gt; 기본 제공 변수 &amp;gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;양식&lt;/code&gt; 관련 변수를 활성화해준다. &lt;br /&gt;
+ &lt;img src=&quot;/images/post_11_gtm/blog_step_8.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;트리거 생성&lt;br /&gt;
+ &lt;img src=&quot;/images/post_11_gtm/blog_step_9.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/images/post_11_gtm/blog_step_10.png&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
+ 폼 버튼을 눌러보면 사진과같이 Form이벤트가 발생한다.&lt;/p&gt;
+
+    &lt;p&gt;사진과같이 이벤트가 발생하고 입력된 정보가 GTM으로 전달된다.   &lt;br /&gt;
+ 이제 이메일 정보만 분리해서 확인해보자&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;사용자 정의 변수를 생성한다.&lt;/p&gt;
+
+    &lt;p&gt;속성의 구분은 &lt;code class=&quot;highlighter-rouge&quot;&gt;.&lt;/code&gt;으로 구분한다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/images/post_11_gtm/blog_step_11.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;태그 생성&lt;br /&gt;
+ &lt;img src=&quot;/images/post_11_gtm/blog_step_12.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; (라벨 :  -  - 1q2w3e4razsxdcfv)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/images/post_11_gtm/blog_step_13.png&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
+ 새로고침하여 정상적으로 출력되는지 확인한다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;페이스북-픽셀을-사용해보자&quot;&gt;페이스북 픽셀을 사용해보자.&lt;/h4&gt;
+&lt;p&gt;페이스북 비즈니스 관리자에서 픽셀 스크립트를 가져온다. (본 과정은 생략)&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;태그 생성&lt;br /&gt;
+&lt;img src=&quot;/images/post_11_gtm/blog_fb_1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;픽셀이 동작하는지 확인해본다.&lt;br /&gt;
+&lt;img src=&quot;/images/post_11_gtm/blog_fb_2.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;페이스북-픽셀을-이용한-컨버젼-트레킹&quot;&gt;페이스북 픽셀을 이용한 컨버젼 트레킹&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;이전에 만든 픽셀 태그를 복사한다.&lt;br /&gt;
+&lt;img src=&quot;/images/post_11_gtm/blog_fb_3.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;AddToCart&lt;/code&gt;의 이벤트를 설정한다.&lt;br /&gt;
+&lt;img src=&quot;/images/post_11_gtm/blog_fb_4.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;변수 생성&lt;br /&gt;
+&lt;img src=&quot;/images/post_11_gtm/blog_fb_5.png&quot; alt=&quot;image&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;/images/post_11_gtm/blog_fb_6.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;생성한 변수를 이용해 데이터를 수집해보자&lt;br /&gt;
+&lt;img src=&quot;/images/post_11_gtm/blog_fb_7.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;확인해본다. &lt;br /&gt;
+&lt;img src=&quot;/images/post_11_gtm/blog_fb_8.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Tue, 10 Sep 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2019-09-10/GTM-%EC%8B%AC%ED%99%94/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-09-10/GTM-%EC%8B%AC%ED%99%94/</guid>
+      </item>
+    
+      <item>
         <title>[GTM] Google Tag Manager를 이용한 마케팅 (기본)</title>
         <description>&lt;h2 id=&quot;gtm이란&quot;&gt;GTM이란?&lt;/h2&gt;
 &lt;p&gt;사용자 액션 중심의 구글 마케팅 트래킹 툴&lt;/p&gt;
@@ -93,13 +239,14 @@
 &lt;/ol&gt;
 
 &lt;h4 id=&quot;image-click-추적-수집&quot;&gt;Image Click 추적 수집&lt;/h4&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1. Click Element 설정으로 유니크한 값을 관리할 수 있다.         
-![image](/images/post_10_gtm/setting_image_1.png)      
-유니크한 값으로는 id &amp;gt; class &amp;gt; selector 순으로 정한다.     
-이마저도 없는경우 어쩔 수 없이 url을 사용한다.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
 &lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Click Element 설정으로 유니크한 값을 관리할 수 있다.           &lt;br /&gt;
+ &lt;img src=&quot;/images/post_10_gtm/setting_image_1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;유니크한 값으로는 id &amp;gt; class &amp;gt; selector 순으로 정한다.   &lt;br /&gt;
+ 이마저도 없는경우 어쩔 수 없이 url을 사용한다.&lt;/p&gt;
+  &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Click URL&lt;/code&gt;값으로 트리거에 등록한다.                 &lt;br /&gt;
  &lt;img src=&quot;/images/post_10_gtm/setting_image_2.png&quot; alt=&quot;image&quot; /&gt;      &lt;br /&gt;
@@ -179,8 +326,8 @@
 
 </description>
         <pubDate>Wed, 04 Sep 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2019-09-04/GTM-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019-09-04/GTM-%E1%84%80%E1%85%B5%E1%84%87%E1%85%A9%E1%86%AB/</guid>
+        <link>http://localhost:4000/2019-09-04/GTM-%EA%B8%B0%EB%B3%B8/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-09-04/GTM-%EA%B8%B0%EB%B3%B8/</guid>
       </item>
     
       <item>
