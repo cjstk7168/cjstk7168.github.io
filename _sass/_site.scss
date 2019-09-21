@@ -37,24 +37,33 @@ ul>li:before {
 }
 
 .site-category {
-  position: fixed;
+  max-width: 180px;
 
   .title {
     font-weight: 600;
   }
 
   ol>li, ul>li {
-    margin: 0rem;
     line-height: 1.2rem;
+    border-bottom: 1px solid #e8e8e8;
+    margin: 0;
   }
 
   ul {
-    margin-left: 0.6rem;
+    //margin-left: 0.6rem;
     list-style: none;
 
     a {
+      padding: 0.5rem 0;
       font-size: 0.8rem;
       color: #000;
+      display: block;
+    }
+
+    .badge {
+      float: right;
+      font-size: 12px;
+      margin-top: 3px;
     }
   }
 
@@ -200,6 +209,7 @@ ul>li:before {
           background-color: $oc-gray-6;
           text-decoration: none;
           border-radius: 3px;
+          font-weight: 500;
 
           span {
             float: left;
@@ -235,6 +245,7 @@ ul>li:before {
 .list {
   &-post {
     padding: 4% 2%;
+    border-bottom: 1px solid #DDDDDD;
     
     &:hover {
       background-color: $background-over-color;
@@ -253,20 +264,20 @@ ul>li:before {
 
     &-title {
       margin-bottom: .3rem;
-      font-size : 1.8rem;
+      font-size : 1.6rem;
       font-weight: 600;
     }
 
     &-date {
       color: $base-lighten-color;
-      font-size: .8rem;
+      font-size: .6rem;
       text-transform: uppercase;
     }
 
     &-desc {
       color: $base-color;
       margin-bottom: .25rem;
-      font-size :1rem;
+      font-size : 0.8rem;
     }
   }
 
