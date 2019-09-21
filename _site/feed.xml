@@ -1,9 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>시원한물냉의 사람 사는 이야기</title>
+    <title>{ ... 데브로그 }</title>
     <link>http://localhost:4000</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    
+      <item>
+        <title>[DNS] Github 블로그에 커스텀 도메인을 연결해보자</title>
+        <description>&lt;h2 id=&quot;들어가며&quot;&gt;들어가며&lt;/h2&gt;
+&lt;p&gt;본 글은 도메인 구입하는 과정은 생략합니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;도메인-구매&quot;&gt;도메인 구매&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;후이즈&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;cafe24&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;aws&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;가비아&lt;/code&gt; 등 국.내외 많은 업체들이 존재합니다. 적당하고 좋은 가격에 구입하시면 되는데 가능하면 믿을 수 있는 업체를 추천합니다.&lt;/p&gt;
+
+&lt;p&gt;간혹 너무 작은 업체나 믿을 수 없는 업체는 도메인 서비스가 가끔 먹통되는 경우가 발생하곤 합니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;네임서버-연결&quot;&gt;네임서버 연결&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;결제한 도메인의 DNS설정으로 갑니다.&lt;br /&gt;
+ &lt;img src=&quot;/images/post_11_blog_domain/setup_1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+    &lt;p&gt;사진과 같이 A레코드 4개, CNAME으로 본인의 깃허브 URL을 입력합니다.&lt;/p&gt;
+
+    &lt;p&gt;기존 2개를 입력하던것에서 4개로 입력하는것으로 변경되었습니다.
+ A레코드 4개를 입력하면 자동으로 github에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;https&lt;/code&gt;를 지원합니다.&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;https://help.github.com/en/articles/setting-up-an-apex-domain#configuring-a-records-with-your-dns-provider&quot;&gt;Gubhub A레코드 설정문서 바로가기&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;github 블로그로 가서 설정을 변경해줍니다.
+ ```
+    &lt;ol&gt;
+      &lt;li&gt;블로그&lt;/li&gt;
+      &lt;li&gt;Settings&lt;/li&gt;
+      &lt;li&gt;Custom Domain 에 본인의 구입한 도메인 주소 입력
+ ```&lt;/li&gt;
+    &lt;/ol&gt;
+
+    &lt;p&gt;그리고 &lt;code class=&quot;highlighter-rouge&quot;&gt;1번&lt;/code&gt;에서 A레코드를 4개 입력하였다면 https 도 체크해줍니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;설정이 끝났습니다.
+ DNS설정은 업체마다 다르겠지만 최대 48시간까지 소요될 수 있습니다.
+ 저는 30분 이내로 처리되었어요.&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/images/post_11_blog_domain/setup_2.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Wed, 11 Sep 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2019-09-11/Guthub-%EB%8F%84%EB%A9%94%EC%9D%B8-%EC%97%B0%EA%B2%B0/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-09-11/Guthub-%EB%8F%84%EB%A9%94%EC%9D%B8-%EC%97%B0%EA%B2%B0/</guid>
+      </item>
     
       <item>
         <title>[GTM] Google Tag Manager를 이용한 마케팅 (심화)</title>
@@ -647,6 +696,58 @@ $./aws-elastic-beanstalk-cli-setup/scripts/bundled_installer
         <pubDate>Tue, 13 Aug 2019 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/2019-08-13/vuejs%EC%9E%90%EB%8F%99%EB%B0%B0%ED%8F%AC-aws/</link>
         <guid isPermaLink="true">http://localhost:4000/2019-08-13/vuejs%EC%9E%90%EB%8F%99%EB%B0%B0%ED%8F%AC-aws/</guid>
+      </item>
+    
+      <item>
+        <title>TypeScript로 Express시작하기</title>
+        <description>&lt;h2 id=&quot;typescript-설치&quot;&gt;TypeScript 설치&lt;/h2&gt;
+&lt;p&gt;우선 &lt;code class=&quot;highlighter-rouge&quot;&gt;express&lt;/code&gt;를 먼서 설치해준다.
+본 예제에서는 서버용 &lt;code class=&quot;highlighter-rouge&quot;&gt;express&lt;/code&gt;를 세팅하기위하여 프로젝트명을 &lt;code class=&quot;highlighter-rouge&quot;&gt;api&lt;/code&gt;로 설정한다.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ npm install express-generator -g
+$ express api
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;그리고 기본적인 모듈 설치&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ cd api
+$ npm install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이제 기본적인 express세팅은 끝이났다.
+다음으로 TypeScript사용을 위한 세팅을 한다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# make package.json
+$ npm init -y
+
+# install save devDependencies
+$ npm i -D typescript
++ typescript@3.5.3
+
+# install @types
+$ npm i -D @types/node @types/express
++ @types/express@4.0.37
++ @types/node@8.0.30
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;빌드를 위한 TypeScript설정을 한다.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# make tsconfig.json
+$ npx tsc -init
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;프로젝트를 시작할 때 TypeScript를 빌드 후 Node.js로 실행하는 스크립트를 편집한다.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# package.json
+{
+  &quot;scripts&quot;: {
+    &quot;start&quot;: &quot;tsc &amp;amp;&amp;amp; node dist&quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;여기까지 했으면 TypeScript사용을 위한 express세팅이 완료되었다.&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;npm start&lt;/code&gt;를 통하여 정상적으로 동작하는지 확인해본다.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 10 Aug 2019 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/2019-08-10/express-typescript%EB%A1%9C-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-08-10/express-typescript%EB%A1%9C-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0/</guid>
       </item>
     
       <item>
@@ -1593,8 +1694,8 @@ http://localhost:3000/api/.. 에서 반응이 오는것을 볼 수 있다.&lt;/p
 &lt;em&gt;참 쉽죠?&lt;/em&gt;&lt;/p&gt;
 </description>
         <pubDate>Sat, 01 Jun 2019 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/2019-06-01/Express-Vue-%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF%E1%84%92%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC-%E1%84%89%E1%85%A6%E1%84%90%E1%85%B5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/</link>
-        <guid isPermaLink="true">http://localhost:4000/2019-06-01/Express-Vue-%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF%E1%84%92%E1%85%AA%E1%86%AB%E1%84%80%E1%85%A7%E1%86%BC-%E1%84%89%E1%85%A6%E1%84%90%E1%85%B5%E1%86%BC%E1%84%92%E1%85%A1%E1%84%80%E1%85%B5/</guid>
+        <link>http://localhost:4000/2019-06-01/Express-Vue-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-%EC%84%B8%ED%8C%85%ED%95%98%EA%B8%B0/</link>
+        <guid isPermaLink="true">http://localhost:4000/2019-06-01/Express-Vue-%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD-%EC%84%B8%ED%8C%85%ED%95%98%EA%B8%B0/</guid>
       </item>
     
       <item>
