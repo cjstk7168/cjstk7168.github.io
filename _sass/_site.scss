@@ -36,7 +36,7 @@ ul>li:before {
   content: '';
 }
 
-.site-category {
+.site-left-nav {
   max-width: 180px;
 
   .title {
@@ -67,11 +67,34 @@ ul>li:before {
     }
   }
 
+  .contact-ul {
+    ul li {
+      div {
+        display: flex;
+
+        i {
+          margin: auto 0px;
+          font-size: 0.9rem;
+        }
+
+        a {
+          padding-left: 5px;
+          color: #000;
+          font-size: 0.4rem;
+          display: block;
+        }
+      }
+    }
+  }
+
   @media (max-width: 767px) {
     position: relative;
   }
-}
 
+  @media (max-width: 48rem){
+    display: none;
+  }
+}
 
 /*--------------
   Header
@@ -81,11 +104,11 @@ ul>li:before {
   height: 3rem;
   position: fixed;
   top: 0;
-  width: 100%;
+  width: calc(100% - 1rem);
   background-color: #FFF;
   z-index: 10;
 
-  &-title {
+  &__title {
     margin: 0.4em 0rem;
     font-size: 1.2em;
     line-height: 1.2em;
@@ -111,7 +134,17 @@ ul>li:before {
       width: 30px;
       height: 30px;
     }
+  }
 
+  &__mobile {
+
+    position: absolute;
+    right: 10px;
+    top: 12px;
+
+    @media (min-width: 48rem){
+      display: none;
+    }
   }
 
   &-nav {
