@@ -77,12 +77,15 @@ ul>li:before {
   z-index: 10;
 
   &-title {
-    margin: 0.4em 2rem;
+    margin: 0.4em 0rem;
     font-size: 1.2em;
     line-height: 1.2em;
     font-weight: 600;
 
     a {
+      float: left;
+      padding-top: 5px;
+      padding-left: 5px;
       color: $header-title;
       &:hover,
       &:focus {
@@ -92,6 +95,12 @@ ul>li:before {
 
     span {
       color: $oc-gray-5;
+    }
+
+    img {
+      float: left;
+      width: 30px;
+      height: 30px;
     }
 
   }
