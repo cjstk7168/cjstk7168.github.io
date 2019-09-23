@@ -42,7 +42,7 @@ disqus:
   id:               "cjstk7168"
 
 # URL
-url:                "https://www.kyungyeon.dev" # the base hostname & protocol for your site
+url:                "https://kyungyeon.dev" # the base hostname & protocol for your site
 # url:                "http://localhost:4000" # use this url when you develop
 baseurl:            "" # the subpath of your site, e.g. /blog
 
@@ -62,12 +62,12 @@ kramdown:
 
 # Navigation
 nav:
-  # - name:           "About"
-  #   url:            "/about"
+   - name:           "About"
+     url:            "/about"
   # - name:           "Archive"
   #   url:            "/archive"
-  # - name:           "Tags"
-  #   url:            "/tags"
+   - name:           "Tags"
+     url:            "/tags"
   # - name:           "Github"
   #   url:            "https://cjstk7168.github.io"
 
