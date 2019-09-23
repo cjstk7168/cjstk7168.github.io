@@ -2,91 +2,90 @@
 <html lang="en">
 {% include head.html %}
 <body>
-  <div class="content-container">
+<div class="content-container">
     <div class="row">
-      <div class="col-md-12 col-xs-12">
-        <div class="header">
-            <div class="header__title">
-                <img src="/images/global/favicon.ico" />
-                <a href="{{site.url}}{{site.baseurl}}">{{ site.name }}</a>
-            </div>
+        <div class="col-md-12 col-xs-12">
+            <div class="header">
+                <div class="header__title">
+                    <img src="/images/global/favicon.ico"/>
+                    <a href="{{site.url}}{{site.baseurl}}">{{ site.name }}</a>
+                </div>
 
-            <div class="header__mobile">
-                <label for="opener_chk">
-                    <img src="/images/global/more.png" />
-                </label>
+                <div class="header__mobile">
+                    <label for="opener_chk">
+                        <img src="/images/global/more.png"/>
+                    </label>
+                </div>
             </div>
         </div>
-      </div>
 
-      <div class="col-md-2 col-xs-12">
-        <input type="checkbox" class="opener_chk" id="opener_chk" />
-        <div class="site-left-nav">
-          <span class="title">[categories]</span>
-          <nav class="content-ul">
-              <ul>
-                  <li>
-                      <a href="/" class="sidebar-nav-item pl-3rem">
-                        <span class="name">All</span>
-                        <span class="badge">({{ site.posts.size }})</span>
-                      </a>
-                  </li>
-                {% for category in site.categories %}
-                  <li>
-                    <a href="{{ root_url }}/{{ site.category_dir }}{{ category | first }}"
-                       class="sidebar-nav-item pl-3rem">
+        <div class="col-md-2 col-xs-12">
+            <input type="checkbox" class="opener_chk" id="opener_chk"/>
+            <div class="site-left-nav">
+                <span class="title">[categories]</span>
+                <nav class="content-ul">
+                    <ul>
+                        <li>
+                            <a href="/" class="sidebar-nav-item pl-3rem">
+                                <span class="name">All</span>
+                                <span class="badge">({{ site.posts.size }})</span>
+                            </a>
+                        </li>
+                        {% for category in site.categories %}
+                        <li>
+                            <a href="{{ root_url }}/{{ site.category_dir }}{{ category | first }}"
+                               class="sidebar-nav-item pl-3rem">
                       <span class="name">
                           {{ category | first }}
                       </span>
-                      <span class="badge">({{ category | last | size }})</span>
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
-          </nav>
+                                <span class="badge">({{ category | last | size }})</span>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+
+
+            <div class="site-left-nav">
+                <span class="title">[contact me]</span>
+                <nav class="contact-ul">
+                    <ul>
+                        <li>
+                            <div>
+                                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+        <div class="col-md-8 col-xs-12">
+            {{ content }}
         </div>
 
-
-
-        <div class="site-left-nav">
-          <span class="title">[contact me]</span>
-            <nav class="contact-ul">
-                <ul>
-                    <li>
-                        <div>
-                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                            <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
+        <div class="col-md-2">
+            <!--        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+            <!--        &lt;!&ndash; github index side &ndash;&gt;-->
+            <!--        <ins class="adsbygoogle"-->
+            <!--             style="display:block"-->
+            <!--             data-ad-client="ca-pub-9074439507185131"-->
+            <!--             data-ad-slot="5383943644"-->
+            <!--             data-ad-format="auto"-->
+            <!--             data-full-width-responsive="true"></ins>-->
+            <!--        <script>-->
+            <!--            (adsbygoogle = window.adsbygoogle || []).push({});-->
+            <!--        </script>-->
         </div>
 
-      </div>
-      <div class="col-md-8 col-xs-12">
-        {{ content }}
-      </div>
-
-    <div class="col-md-2">
-<!--        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
-<!--        &lt;!&ndash; github index side &ndash;&gt;-->
-<!--        <ins class="adsbygoogle"-->
-<!--             style="display:block"-->
-<!--             data-ad-client="ca-pub-9074439507185131"-->
-<!--             data-ad-slot="5383943644"-->
-<!--             data-ad-format="auto"-->
-<!--             data-full-width-responsive="true"></ins>-->
-<!--        <script>-->
-<!--            (adsbygoogle = window.adsbygoogle || []).push({});-->
-<!--        </script>-->
-    </div>
-
-      <div class="col-md-12 col-xs-12">
-        {% include footer.html %}
-      </div>
+        <div class="col-md-12 col-xs-12">
+            {% include footer.html %}
+        </div>
     </div>
 
 
-  </div>
+</div>
 </body>
 </html>

@@ -1,53 +1,55 @@
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta property="og:title" content="시원한 물냉의 사람 사는 이야기">
-  <meta name="description" content="{{ site.description }}">
+    <meta property="og:title" content="시원한 물냉의 사람 사는 이야기">
+    <meta name="description" content="{{ site.description }}">
 
-  <!-- 파비콘 -->
-  <link rel="shortcut icon" href="/images/global/favicon.ico">
-  <link rel="icon" href="/images/global/favicon.ico">
+    <!-- 파비콘 -->
+    <link rel="shortcut icon" href="/images/global/favicon.ico">
+    <link rel="icon" href="/images/global/favicon.ico">
 
-<!--  <meta property="og:image" content="https://if.kakao.com/images/og2019.png">-->
-<!--  <meta property="og:url" content="https://if.kakao.com/"><meta property="og:site_name" content="if kakao 개발자 컨퍼런스 2019">-->
+    <!--  <meta property="og:image" content="https://if.kakao.com/images/og2019.png">-->
+    <!--  <meta property="og:url" content="https://if.kakao.com/"><meta property="og:site_name" content="if kakao 개발자 컨퍼런스 2019">-->
 
-  <title>{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}</title>
+    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}</title>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css" type="text/css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css" type="text/css">
 
-  <!-- Font -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
+    <!-- Font -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono" rel="stylesheet">
 
-  <link rel="alternate" type="application/rss+xml" title="RSS Feed for {{ site.name }}" href="{{ site.baseurl }}/feed.xml" />
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for {{ site.name }}"
+          href="{{ site.baseurl }}/feed.xml"/>
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.5.0/styles/default.min.css">
-  <script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-  {% seo %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.5.0/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    {% seo %}
 
-  <!-- 구글 애드워즈 -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({
-      google_ad_client: "ca-pub-9074439507185131",
-      enable_page_level_ads: true
-    });
-  </script>
+    <!-- 구글 애드워즈 -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-9074439507185131",
+            enable_page_level_ads: true
+        });
+    </script>
 
-  <!-- 네이버 트래킹 -->
-  <meta name="naver-site-verification" content="4ee63f8a2210b9a822e001a09e80275e2884fef8"/>
-  <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-  <script type="text/javascript">
-    if(!wcs_add) var wcs_add = {};
-    wcs_add["wa"] = "10ccb3be5e6706";
-    wcs_do();
-  </script>
+    <!-- 네이버 트래킹 -->
+    <meta name="naver-site-verification" content="4ee63f8a2210b9a822e001a09e80275e2884fef8"/>
+    <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+    <script type="text/javascript">
+        if (!wcs_add) var wcs_add = {};
+        wcs_add["wa"] = "10ccb3be5e6706";
+        wcs_do();
+    </script>
 
-  {% include google-analytics.html %}
+    {% include google-analytics.html %}
 
 </head>
