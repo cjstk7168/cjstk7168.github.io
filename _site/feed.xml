@@ -18,6 +18,61 @@
 
 &lt;p&gt;&lt;img src=&quot;/images/post12_react_basic/setup_1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
 
+&lt;h2 id=&quot;라우터-설정하기&quot;&gt;라우터 설정하기&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$npm install --save react-router-dom
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위 명령어를 통해 &lt;code class=&quot;highlighter-rouge&quot;&gt;react-router&lt;/code&gt;를 설치합니다.&lt;/p&gt;
+
+&lt;p&gt;홈과 어바웃 2개의 페이지를 만들기 위해&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt; 폴더아래 &lt;code class=&quot;highlighter-rouge&quot;&gt;views&lt;/code&gt;라는 폴더를 만들었습니다.&lt;/p&gt;
+
+&lt;p&gt;그리고 그 안에 &lt;code class=&quot;highlighter-rouge&quot;&gt;home.js&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;about.js&lt;/code&gt; 2개의 컴포넌트를 생성해줍니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;src/views/home.js&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import React from 'react';
+
+const Home = () =&amp;gt; {
+  return (
+      &amp;lt;div&amp;gt;
+          hello world home
+      &amp;lt;/div&amp;gt;
+  )
+};
+
+export default Home;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이런식으로 2개의 컴포넌트를 생성합니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;src/App.js&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import React from 'react';
+import { BrowserRouter as Router, Route, Switch} from &quot;react-router-dom&quot;;
+import Home from './views/home';
+import About from './views/about';
+
+function App() {
+  return (
+    &amp;lt;Router&amp;gt;
+        &amp;lt;div&amp;gt;
+            &amp;lt;Switch&amp;gt;
+                &amp;lt;Route exact path='/' component={Home} /&amp;gt;
+                &amp;lt;Route path='/about' component={About} /&amp;gt;
+            &amp;lt;/Switch&amp;gt;
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/Router&amp;gt;
+  );
+}
+
+export default App;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;App.js에서 Route를 import하고 path설정을 해줍니다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:3000&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;http://localhost:3000/about&lt;/code&gt; 를 들어가봅니다.&lt;/p&gt;
+
+&lt;p&gt;간단하게 라우터 설정이 끝났습니다.&lt;/p&gt;
 </description>
         <pubDate>Tue, 24 Sep 2019 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/2019-09-24/React%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%EC%83%9D%EC%84%B1-%EB%B0%8F-%EB%9D%BC%EC%9A%B0%ED%84%B0-%EC%97%B0%EA%B2%B0/</link>
