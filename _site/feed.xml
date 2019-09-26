@@ -16,7 +16,7 @@
 
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;npm start&lt;/code&gt;명령어를 통해 react 프로젝트가 생성된것을 확인할 수 있다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/post12_react_basic/setup_1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/post_12_react_basic/setup_1.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;라우터-설정하기&quot;&gt;라우터 설정하기&lt;/h2&gt;
 
