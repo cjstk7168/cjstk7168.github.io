@@ -1,0 +1,91 @@
+I"C<h2 id="사전준비">사전준비</h2>
+<p>우선 배포를 위한 프로젝트를 생성한다.<br />
+본 예제에서는 Express + Vue.js로 구성된 기본 프로젝트를 사용하기로 한다.</p>
+
+<p><a href="/2019-06-01/Express-Vue-개발환경-세팅하기/">프로젝트 세팅방법</a>
+(프로젝트가 없다면 링크 참고)</p>
+
+<h2 id="aws가입하기">AWS가입하기</h2>
+<p>AWS는 이메일+암호+기본정보(이름 주소)를 입력 후 카드를 걸어두면 바로 사용이 가능하다.<br />
+필자는 AWS의 개인계정을 서비스에 사용하는 정도는 아니고 프리티어수준으로도 충분하다.<br />
+때문에 예제에서 모든 세팅은 프리티어 기준으로 기록할 예정이다.</p>
+
+<h2 id="elastic-beanstalk-생성">Elastic Beanstalk 생성</h2>
+<p>AWS 프리티어의 경우 Elastic Beanstalk(이하 EB)에 대한 요금은 별도로 부과하지 않는다. 다만 EB에 연결된 EC2에 대한 비용이 부과되는데, 학습을 위한 용도라면 무료한도 내에서 생성해야한다.</p>
+
+<p><a href="https://aws.amazon.com/ko/ec2/pricing/">AWS EC2 비용 확인하기</a></p>
+
+<ol>
+  <li>
+    <p>필요한 내용만 적어보자면 <code class="highlighter-rouge">Windows t2.micro 인스턴스를 월별 750시간 사용</code>으로 설정하면 프리티어 한도 내에서 무료로 사용가능하다. (24시간 가동해도 한달 사용가능한 시간이다.)</p>
+
+    <p><img src="/images/post_8_eb/setup1.png" alt="image" /><br />
+ [AWS -&gt; Elastic Beanstalk 화면 접속하면 위와같은 화면을 볼 수 있다]</p>
+  </li>
+  <li><strong>시작하기</strong> 버튼을 눌러서 새로운 프로젝트를 생성한다.</li>
+  <li>
+    <p><img src="/images/post_8_eb/setup2.png" alt="image" /></p>
+
+    <p><code class="highlighter-rouge">프로젝트명</code> : 적당한 이름을 적어준다.<br />
+<code class="highlighter-rouge">플랫폼</code> : 개발할 언어를 적어준다. 본 예제에서는 Node.js배포를 위하여 Node.js를 선택했다.<br />
+<code class="highlighter-rouge">애플리케이션 코드</code> : 바로 올려도 되지만 환경 구성 후 업로드도 가능하다. <code class="highlighter-rouge">샘플 어플리케이션</code>을 선택하고 넘어간다.<br />
+<img src="/images/post_8_eb/setup3.png" alt="image" /><br />
+[위와같이 환경구성을 시작한다. 환경구성에는 5분정도 소요된다.]</p>
+  </li>
+  <li>
+    <p>생성된 환경을 보면 Elastic Beanstalk은 배포를 위한 서비스이기 때문에 실제로 EC2에 가보면 리눅스 서버가 생성되어있다.</p>
+
+    <p><img src="/images/post_8_eb/setup4.png" alt="image" /></p>
+  </li>
+  <li>
+    <p>환경구성이 완료되었다!
+상단에 보면 <code class="highlighter-rouge">URL</code>이라는 항목이 있다. 눌러보면 샘플 웹이 뜬다! (환호!)</p>
+  </li>
+  <li>
+    <p>구성 &gt; 인스턴트를 통해 원하는 형태의 EC2 인스턴스가 생성되었는지 확인해본다.<br />
+ <em>(프리티어이기때문에 민감하다)</em>
+ EC2 micro로 선택해서 로드밸런서를 지원하지 않는데, 다음에 사용할 기회가 있다면 다시 포스팅을 해보겠다.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">업로드 및 배포</code>를 눌러서 새로운 프로젝트를 업로드 할 수 있다.<br />
+ 하지만, 우리의 최종목적은 <code class="highlighter-rouge">자동배포</code></p>
+  </li>
+  <li>
+    <p><img src="/images/post_8_eb/setup5.png" alt="image" /><br />
+ Elastic Beanstalk 메인페이지로 오면 위와같이 생성된 프로젝트를 볼 수 있고
+ 왼쪽에 배포환경 구성세팅에 대한 설명이 있다. (친절하여라)</p>
+  </li>
+  <li><code class="highlighter-rouge">AWS EB CLI 설치</code> 링크를 눌러보면 아주 자세히 설명되어있다. <a href="https://docs.aws.amazon.com/ko_kr/elasticbeanstalk/latest/dg/eb-cli3-install.html">바로가기</a>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$git clone https://github.com/aws/aws-elastic-beanstalk-cli-setup.git
+$./aws-elastic-beanstalk-cli-setup/scripts/bundled_installer
+</code></pre></div>    </div>
+    <p>위 두 줄로 배포환경이 모두 설치된다.<br />
+예전에는 설치하고 세팅할게 많았는데, 이제는 스크립트로 한 번에 편하게 설치하도록 지원해준다.</p>
+
+    <p>혹시 Mac OS에서 eb가 정상적으로 설치되지 않는다면? =&gt; <a href="https://docs.aws.amazon.com/ko_kr/elasticbeanstalk/latest/dg/eb-cli3-install-osx.html">링크 참고</a></p>
+  </li>
+  <li><code class="highlighter-rouge">eb init</code><br />
+ 업로드할 프로젝트에서 <code class="highlighter-rouge">eb init</code>을 실행하여 배포환경을 준비한다.
+    <ul>
+      <li>region선택 (필자는 당연히 서울리젼)</li>
+      <li><code class="highlighter-rouge">aws-access-id</code>선택 (IAM 설정이 필요하다 - 다음 포스팅에서 다뤄본다)</li>
+      <li>여기까지 하면 기존에 생성된 프로젝트가 리스트에 있다. 해당 프로젝트 선택</li>
+    </ul>
+  </li>
+  <li>
+    <p>설정이 끝났다 배포를 해보자
+ <code class="highlighter-rouge">eb deploy</code><br />
+ 끝!? 끝!</p>
+  </li>
+  <li>배포가 정상적으로 잘 되었는지 <code class="highlighter-rouge">AWS console</code> 에서 확인해본다.<br />
+<img src="/images/post_8_eb/setup6.png" alt="image" /></li>
+</ol>
+
+<h2 id="추가로-확인해보아얄-사항">추가로 확인해보아얄 사항</h2>
+<p>이 리스트에 내용은 다음 포스팅에 추가하기로 한다.</p>
+<ol>
+  <li>분산처리를 위한 <code class="highlighter-rouge">로그밸런서</code></li>
+  <li>배포권한을 위한 <code class="highlighter-rouge">IAM</code>설정</li>
+  <li><code class="highlighter-rouge">AWS -Route53</code>을 이용한 도메인 연결</li>
+</ol>
+:ET

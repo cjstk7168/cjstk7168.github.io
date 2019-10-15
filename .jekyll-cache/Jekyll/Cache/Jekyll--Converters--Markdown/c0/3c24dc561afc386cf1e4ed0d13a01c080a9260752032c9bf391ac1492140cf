@@ -1,0 +1,32 @@
+I"�<h2 id="믹스인">믹스인</h2>
+<p>Mixins는 Vue 컴포넌트에 재사용 가능을 배포하는 유연한 방법입니다. mixin 객체는 모든 구성요소 옵션을 포함할 수 있습니다. 컴포넌트에 mixin을 사용하면 해당 mixin의 모든 옵션이 컴토넌트의 고유 옵션에 “혼합”됩니다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// mixin 객체 생성</span>
+<span class="kd">var</span> <span class="nx">myMixin</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">created</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">hello</span><span class="p">()</span>
+  <span class="p">},</span>
+  <span class="na">methods</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">hello</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">hello from mixin!</span><span class="dl">'</span><span class="p">)</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// mixin을 사용할 컴포넌트 정의</span>
+<span class="kd">var</span> <span class="nx">Component</span> <span class="o">=</span> <span class="nx">Vue</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+  <span class="na">mixins</span><span class="p">:</span> <span class="p">[</span><span class="nx">myMixin</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="kd">var</span> <span class="nx">component</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Component</span><span class="p">()</span> <span class="c1">// =&gt; "hello from mixin!"</span>
+</code></pre></div></div>
+
+<hr />
+<ul>
+  <li>References
+    <ol>
+      <li>https://kr.vuejs.org/v2/guide/mixins.html</li>
+    </ol>
+  </li>
+</ul>
+:ET

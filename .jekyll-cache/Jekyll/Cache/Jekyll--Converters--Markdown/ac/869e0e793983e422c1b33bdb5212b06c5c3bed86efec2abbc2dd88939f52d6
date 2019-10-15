@@ -1,0 +1,91 @@
+I"�<h2 id="rest">REST</h2>
+<ul>
+  <li><code class="highlighter-rouge">Representational State Transfer</code>의 약자로 월드 와이드 웹(www)의 기술과 HTTP프로토콜을 그대로 활용하여 웹의 장점을 최대한 활용할 수 있는 아키텍처 기술이다.</li>
+  <li>HTTP URI<code class="highlighter-rouge">(Uniform Resource Identifier)</code>를 통해 자원을 명시하고, HTTP 메소드를 통해 해당 자원을 CRUD하는것을 의미한다.</li>
+  <li>공식적으로 표준화된 표준규약이 없다.</li>
+</ul>
+
+<h2 id="rest-api">REST API</h2>
+<ul>
+  <li>위 설명한 <code class="highlighter-rouge">REST</code>기반으로 서비스의 API를 제공하는 것.</li>
+</ul>
+
+<h2 id="rest-api-설계-규칙">REST API 설계 규칙</h2>
+<ol>
+  <li>URI만으로 어떤 정보를 제공할 것인지 명확해야 한다.
+    <ul>
+      <li>동사를 사용하지 않는다. 명사를 사용하며 이 때에도 <strong>단수명사</strong>를 사용한다.</li>
+      <li>ex) GET : /user/1 (ok)</li>
+      <li>ex) GET : /users/1 (err)</li>
+    </ul>
+  </li>
+  <li>
+    <p>HTTP행위에 맞게 사용한다.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">약어</th>
+          <th style="text-align: center">C</th>
+          <th style="text-align: center">R</th>
+          <th style="text-align: center">U</th>
+          <th style="text-align: center">D</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center">-</td>
+          <td style="text-align: center">Create</td>
+          <td style="text-align: center">Read</td>
+          <td style="text-align: center">Update</td>
+          <td style="text-align: center">Delete</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">의미</td>
+          <td style="text-align: center">생성</td>
+          <td style="text-align: center">조회</td>
+          <td style="text-align: center">수정</td>
+          <td style="text-align: center">삭제</td>
+        </tr>
+        <tr>
+          <td style="text-align: center">HTTP</td>
+          <td style="text-align: center">post</td>
+          <td style="text-align: center">get</td>
+          <td style="text-align: center">put</td>
+          <td style="text-align: center">delete</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>URI에 HTTP Method가 들어가지 않는다.
+    <ul>
+      <li>ex) GET : /user/1 (ok)</li>
+      <li>ex) GET : /user/get/1 (err)</li>
+    </ul>
+  </li>
+  <li>최대한 사용을 자제해야하지만 불가피하게 단어가 길어질 경우 - 하이픈을 사용한다.</li>
+  <li>HTTP response CODE는 HTTP문서를 따른다.
+    <ul>
+      <li><a href="https://ko.wikipedia.org/wiki/HTTP_%EC%83%81%ED%83%9C_%EC%BD%94%EB%93%9C">HTTP 상태코드 확인</a></li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="restful">RESTful</h2>
+<ul>
+  <li>REST에서 설명하였듯이 공식적으로 표준화된 규약이 없다.</li>
+  <li><code class="highlighter-rouge">REST API</code>를 제공하는 서비스를 RESTful하다고 부른다. (필자마다 개념이 조금씩 다를 수 있다.)</li>
+  <li>이해하기 쉬운 REST API를 설계하는것에 목적이 있다.</li>
+  <li>RESTful한 API는 성능향상의 목적이 아니기 때문에 최대한 일관성있고 명확하게 설계해야한다.</li>
+</ul>
+
+<hr />
+<ul>
+  <li>References
+    <ol>
+      <li>https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html</li>
+      <li>https://bcho.tistory.com/954</li>
+    </ol>
+  </li>
+</ul>
+:ET

@@ -32,20 +32,6 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.5.0/styles/default.min.css">
     <script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>JWT Token 사용하기 | { … 데브로그 }</title>
-<meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="JWT Token 사용하기" />
-<meta property="og:locale" content="en_US" />
-<link rel="canonical" href="http://localhost:4000/2019-06-11/JWT/" />
-<meta property="og:url" content="http://localhost:4000/2019-06-11/JWT/" />
-<meta property="og:site_name" content="{ … 데브로그 }" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-06-11T00:00:00+09:00" />
-<script type="application/ld+json">
-{"@type":"BlogPosting","url":"http://localhost:4000/2019-06-11/JWT/","headline":"JWT Token 사용하기","dateModified":"2019-06-11T00:00:00+09:00","datePublished":"2019-06-11T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019-06-11/JWT/"},"@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-
 
     <!-- 구글 애드워즈 -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -92,6 +78,10 @@
 <amp-auto-ads type="adsense"
               data-ad-client="ca-pub-9074439507185131">
 </amp-auto-ads>
+
+<script>
+    window.location.href = 'https://kyungyeon.dev';
+</script>
 
 <div class="content-container">
     <div class="row">
@@ -332,8 +322,8 @@ secret)
 <h2 id="node를-이용한-jwt-만들기">Node를 이용한 JWT 만들기</h2>
 <p>Payload</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">encodedPayload</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Buffer</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">payload</span><span class="p">))</span>
-                            <span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="s1">'base64'</span><span class="p">)</span>
-                            <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">'='</span><span class="p">,</span> <span class="s1">''</span><span class="p">);</span>
+                            <span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="dl">'</span><span class="s1">base64</span><span class="dl">'</span><span class="p">)</span>
+                            <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="dl">'</span><span class="s1">=</span><span class="dl">'</span><span class="p">,</span> <span class="dl">''</span><span class="p">);</span>
 </code></pre></div></div>
 <p>위와같이 간단히 생성이 가능한다. (Header, Payload) 이 정보를 이용하여 Signature까지
 Signature생성 시 필요한 HMACSHA256은 node기본 내장모듈인 <code class="highlighter-rouge">crypto</code>안에 함수가 있다. (<code class="highlighter-rouge">crypto.createHmac</code>)</p>

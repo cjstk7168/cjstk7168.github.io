@@ -1,0 +1,42 @@
+I"�<h2 id="들어가며">들어가며</h2>
+<p>본 글은 도메인 구입하는 과정은 생략합니다.</p>
+
+<h2 id="도메인-구매">도메인 구매</h2>
+<p><code class="highlighter-rouge">후이즈</code>, <code class="highlighter-rouge">cafe24</code>, <code class="highlighter-rouge">aws</code>, <code class="highlighter-rouge">가비아</code> 등 국.내외 많은 업체들이 존재합니다. 적당하고 좋은 가격에 구입하시면 되는데 가능하면 믿을 수 있는 업체를 추천합니다.</p>
+
+<p>간혹 너무 작은 업체나 믿을 수 없는 업체는 도메인 서비스가 가끔 먹통되는 경우가 발생하곤 합니다.</p>
+
+<h2 id="네임서버-연결">네임서버 연결</h2>
+<ol>
+  <li>
+    <p>결제한 도메인의 DNS설정으로 갑니다.<br />
+ <img src="/images/post_11_blog_domain/setup_1.png" alt="image" /></p>
+
+    <p>사진과 같이 A레코드 4개, CNAME으로 본인의 깃허브 URL을 입력합니다.</p>
+
+    <p>기존 2개를 입력하던것에서 4개로 입력하는것으로 변경되었습니다.
+ A레코드 4개를 입력하면 자동으로 github에서 <code class="highlighter-rouge">https</code>를 지원합니다.</p>
+
+    <p><a href="https://help.github.com/en/articles/setting-up-an-apex-domain#configuring-a-records-with-your-dns-provider">Gubhub A레코드 설정문서 바로가기</a></p>
+  </li>
+  <li>github 블로그로 가서 설정을 변경해줍니다.
+ ```
+    <ol>
+      <li>블로그</li>
+      <li>Settings</li>
+      <li>Custom Domain 에 본인의 구입한 도메인 주소 입력
+ ```</li>
+    </ol>
+
+    <p>그리고 <code class="highlighter-rouge">1번</code>에서 A레코드를 4개 입력하였다면 https 도 체크해줍니다.</p>
+  </li>
+  <li>
+    <p>설정이 끝났습니다.
+ DNS설정은 업체마다 다르겠지만 최대 48시간까지 소요될 수 있습니다.
+ 저는 30분 이내로 처리되었어요.</p>
+
+    <p><img src="/images/post_11_blog_domain/setup_2.png" alt="image" /></p>
+  </li>
+</ol>
+
+:ET

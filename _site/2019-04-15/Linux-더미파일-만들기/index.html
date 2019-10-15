@@ -32,22 +32,6 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.5.0/styles/default.min.css">
     <script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Linux 더미파일 만들기 | { … 데브로그 }</title>
-<meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="Linux 더미파일 만들기" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="디스크 용량이 가득 차면 어딘가 알림을 보내고싶었다. 용량이 가득 차게 만들고싶었다." />
-<meta property="og:description" content="디스크 용량이 가득 차면 어딘가 알림을 보내고싶었다. 용량이 가득 차게 만들고싶었다." />
-<link rel="canonical" href="http://localhost:4000/2019-04-15/Linux-%EB%8D%94%EB%AF%B8%ED%8C%8C%EC%9D%BC-%EB%A7%8C%EB%93%A4%EA%B8%B0/" />
-<meta property="og:url" content="http://localhost:4000/2019-04-15/Linux-%EB%8D%94%EB%AF%B8%ED%8C%8C%EC%9D%BC-%EB%A7%8C%EB%93%A4%EA%B8%B0/" />
-<meta property="og:site_name" content="{ … 데브로그 }" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-04-15T00:00:00+09:00" />
-<script type="application/ld+json">
-{"description":"디스크 용량이 가득 차면 어딘가 알림을 보내고싶었다. 용량이 가득 차게 만들고싶었다.","@type":"BlogPosting","url":"http://localhost:4000/2019-04-15/Linux-%EB%8D%94%EB%AF%B8%ED%8C%8C%EC%9D%BC-%EB%A7%8C%EB%93%A4%EA%B8%B0/","headline":"Linux 더미파일 만들기","dateModified":"2019-04-15T00:00:00+09:00","datePublished":"2019-04-15T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019-04-15/Linux-%EB%8D%94%EB%AF%B8%ED%8C%8C%EC%9D%BC-%EB%A7%8C%EB%93%A4%EA%B8%B0/"},"@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-
 
     <!-- 구글 애드워즈 -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -94,6 +78,10 @@
 <amp-auto-ads type="adsense"
               data-ad-client="ca-pub-9074439507185131">
 </amp-auto-ads>
+
+<script>
+    window.location.href = 'https://kyungyeon.dev';
+</script>
 
 <div class="content-container">
     <div class="row">
@@ -297,7 +285,7 @@
     <h2 id="과제-disk-사용량이-90이상이-넘어가는것을-테스트하기-위해-용량이-큰-파일이-필요하다">과제. Disk 사용량이 90%이상이 넘어가는것을 테스트하기 위해 용량이 큰 파일이 필요하다.</h2>
 
 <p>1G 용량을 차지하는 더미파일을 만드는 명령어가 존재한다.</p>
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">#</span> fallocate <span class="nt">-l</span> 1G test_file
+<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">#</span><span class="w"> </span>fallocate <span class="nt">-l</span> 1G test_file
 </code></pre></div></div>
 
 

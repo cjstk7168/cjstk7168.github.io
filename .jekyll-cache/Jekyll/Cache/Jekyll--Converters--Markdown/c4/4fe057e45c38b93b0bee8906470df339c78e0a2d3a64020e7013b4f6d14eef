@@ -1,0 +1,31 @@
+I"�
+<h3 id="nodejs에서-foreach를-사용하지-마십시오">Node.js에서 forEach를 사용하지 마십시오.</h3>
+<p>사소하지만 작은 습관이 성능을 더 빨라지게 합니다.</p>
+
+<hr />
+
+<p>JavaScript에서 Array.forEach는 for()문법에 비해 95% 더 느립니다.<br />
+<strong>Dont’t use :</strong></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">Array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span> <span class="nx">item</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">func</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre></div></div>
+<p><strong>Use :</strong></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">len</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">len</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>   
+    <span class="nx">func</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>Also :</strong></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>   
+    <span class="nx">func</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>위와 같은 코드는 for문을 한 바퀴 돌 때마다 Array.length를 계산하기 때문에 성능이 떨어질 수 있다.</p>
+
+<h4 id="참고사이트">참고사이트</h4>
+<ul>
+  <li><a href="https://coderwall.com/p/kvzbpa/don-t-use-array-foreach-use-for-instead">원본</a></li>
+</ul>
+
+:ET

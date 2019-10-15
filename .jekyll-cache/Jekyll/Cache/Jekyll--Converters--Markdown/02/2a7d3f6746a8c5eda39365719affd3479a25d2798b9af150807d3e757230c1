@@ -1,0 +1,95 @@
+I"N<h2 id="github-merge와-rebase-이해하기">Github merge와 rebase 이해하기</h2>
+<p>Github를 사용하다보면 branch를 생성하고 add, commit, merge, rebase, push.. 뭔가 할일이 많다.<br />
+공부해야할게 많다. 그 중 병합에 대해 오늘은 끄적여보고자 한다.</p>
+
+<p><strong><code class="highlighter-rouge">merge</code>와 <code class="highlighter-rouge">rebase</code> 둘 다 2개의 branch를 병합하는 방법이다. 뭐가 다를까?</strong></p>
+
+<h2 id="merge">Merge</h2>
+<p>간단한 그림으로 알아보고자 한다.</p>
+
+<ol>
+  <li>그림처럼 commit 상태가 있다고 가정해본다.<br />
+이 상태에서 master에서 새로운 feature branch를 생성하여 추가로 작업을 하였다.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$git checkout -b feature/sample
+$git commit -m "commit a"
+$git commit -m "commit b" 
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>그러면 현재의 git object의 상태는 그림과 같다.<br />
+<img src="/images/post_6/merge_1.png" alt="image" /></p>
+
+<ol>
+  <li>그런데 Master branch에 문제가 생겼다. Hotfix를 해야하는 상황이 생긴것이다.
+그래서 그림과 같이 새로운 branch를 생성하여 작업하고 Master와 다시 병합하였다.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$git checkout master
+$git checkout -b hotfix/typo-err
+$git commit -m "hotfix"
+$git checkout master
+$git merge hotfix/typo-err
+</code></pre></div>    </div>
+    <p><img src="/images/post_6/merge_2.png" alt="image" /></p>
+  </li>
+</ol>
+
+<p>그럼 위와같이 HEAD가 이동하였고, cli에는 <code class="highlighter-rouge">fast-worward</code>라는 내용을 확인할 수 있다.<br />
+빨리감기 라고도 하며 branch의 head가 이동했다는것을 의미한다.</p>
+
+<ol>
+  <li>이 상태에서 이제 개발이 완료된 feature/sample branch를 master와 병합하고자 한다.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$git checkout master
+$git merge sample-branch 
+</code></pre></div>    </div>
+    <p><img src="/images/post_6/merge_3.png" alt="image" /></p>
+  </li>
+</ol>
+
+<p>위와같이 merge를 하게되면 새로운 커밋이 생성되며 갈래가 나갔다가 다시 합쳐지는 형태로 생성되며
+새로운 commit이 자동으로 생성된다. (위 그림에서 xxx 커밋)
+이러한 형태를 <code class="highlighter-rouge">3-way Merge</code>라고 부른다.</p>
+
+<h2 id="rebase">Rebase</h2>
+<p>간단한 그림으로 알아보고자 한다.</p>
+
+<ol>
+  <li>Merge와 동일하게 commit 상태가 있다고 가정해본다.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$git checkout -b feature/sample
+$git commit -m "commit a"
+$git commit -m "commit b" 
+</code></pre></div>    </div>
+    <p><img src="/images/post_6/rebase_1.png" alt="image" /></p>
+  </li>
+  <li>이번에도 Master branch에 문제가 생겨서 hotfix를 하였다.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$git checkout master
+$git checkout -b hotfix/typo-err
+$git commit -m "hotfix"
+$git rebase master
+</code></pre></div>    </div>
+    <p><img src="/images/post_6/rebase_2.png" alt="image" /></p>
+  </li>
+  <li>이 상태에서 이제 개발이 완료된 feature/sample branch를 master와 병합(이번엔 rebase)하고자 한다.
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$git rebase master 
+</code></pre></div>    </div>
+    <p><img src="/images/post_6/rebase_3.png" alt="image" /></p>
+  </li>
+  <li><code class="highlighter-rouge">feature/sample</code>의 branch꼬리를 master에 가져다 붙였다. 이제 master에서 merge를 하면
+깔끔하게 <code class="highlighter-rouge">fast-forward</code>가 이루어 진다.</li>
+</ol>
+
+<p><img src="/images/post_6/rebase_4.png" alt="image" /></p>
+
+<h2 id="결론">결론</h2>
+<p>merge보다 rebase가 이력관리가 더 깔끔하다. (가지가 나갔다가 들어갔다가 하지않기 때문에).
+때문에 실무에서는 rebase가 대부분 사용하고 있는데, 어떤 차이가 있는지 왜 rebase를 쓰는지
+조금이나마 이 글을 정리하면서 이해가 되었다.</p>
+
+<hr />
+<ul>
+  <li>References
+    <ol>
+      <li>https://cyberx.tistory.com/96</li>
+    </ol>
+  </li>
+</ul>
+:ET

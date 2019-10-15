@@ -1,0 +1,212 @@
+I"%<p>본 글은 2019년 6월 4일(수) 10:00~17:00 진행한 구글 클라우드 온보드 행사에 대해 기록한다.</p>
+
+<p><img src="/images/post_5/img_1.png" alt="image" /></p>
+
+<hr />
+
+<h2 id="클라우드의-장점">클라우드의 장점</h2>
+<p>기존에 우리는 웹서비스를 하기위하여 용산(혹은 어딘가)에가서 서버장비를 구매했다.
+그리고 보안을 위해 IDS, IPS등을 구매하고 서비스툴을 설치했다.</p>
+
+<p>사용자가 많아지자 다시 용산에가서 서버를 구매한다. 혹은 생각보다 사용자가 없어서 서버장비가 처치곤란이 되었다.</p>
+
+<p>어느날 천재지변으로인해 서버에 장애가 생겨 일주일간 서비스를 못하게 되어 사업손실이 생겨버렸다.</p>
+
+<p>위와같은 상황이 과거라면 현재는 클라우드 서비스를 이용하여 서버구매-보안-툴설치 까지 걸리는 시간을 단 몇 분으로 단축하게 되었다. 또한 과거와 달리 보안에 신경을 덜 써도되고 서버다운에 대한 걱정이 없어졌다.</p>
+
+<h2 id="why-google-cloud-">Why Google Cloud ?</h2>
+<ol>
+  <li>20여년간 축적된 기술 노하우</li>
+  <li>전세계 가장 많은 사용자를 가진 서비스 (10억명이상의 활성 사용자)</li>
+  <li>Korea를 위한 다양한 지원 (한국어 상담, 지속적인 API 문서번역 등)</li>
+  <li>강력한 보안</li>
+  <li>강력한 인프라, 스토리지, 네트워크</li>
+  <li>초단위 사용분 결제</li>
+  <li>지속사용자에 대한 할인플랜</li>
+</ol>
+
+<h2 id="titan">Titan</h2>
+<p>구글의 모든 클라우드 서버장비에는 구글이 자체 개발한 Titan칩이 들어갑니다.
+이 칩은 하드웨어를 가로채 악성코드가 담긴 펌웨어주입을 사전에 방지한다.</p>
+
+<p>타이탄칩은 서버부팅 시 공개키암호화를 이용하여 메모리에서 읽어온 부팅데이터가 조작되지 않았는지 검사 후 부트로더를 실행한다.</p>
+
+<p><img src="/images/post_5/img_chip.png" alt="image" /></p>
+
+<h2 id="해저케이블">해저케이블</h2>
+<ol>
+  <li>Google은 위성이 아닌 해저케이블을 이용해 최대 초당 60Tbps (테라비트)의 속도를 보장하다.</li>
+  <li>해저케이블은 수심 8Km아래에 있다.</li>
+  <li>전송 속도는 최대 80Tbps이며 이는 2,100개의 DVD를 1초만에 전송가능할 수 있는 속도이다.</li>
+</ol>
+
+<p><img src="/images/post_5/img_cable.png" alt="image" />
+<img src="/images/post_5/img_cable2.png" alt="image" /></p>
+
+<hr />
+
+<h2 id="모듈소개">모듈소개</h2>
+<h4 id="iam---권한관리">IAM - 권한관리</h4>
+<p>Org - (example.com)<br />
+｜<br />
+Folders - (Folers.. 다중구조 가능)<br />
+｜<br />
+Projects - (프로젝트)  <br />
+｜<br />
+Resources - (인력)</p>
+
+<p>위와같은 구조로 IAM설정이 가능하며 각 속성마다 읽기/쓰기를 별도로 설정할 수 있다.</p>
+<ol>
+  <li>덜 제한적인 상위 정책이 더 제한적인 리소스 정책에 상속됨<br />
+(간단히 말하면 아래속성에 읽기/쓰기 가 있더라도 더 상위속성이 읽기권한 뿐이라면 상위권한에 따른다.)</li>
+  <li>Cloud Identity 하나로 GCP권한과 G Suite 권한관리가 동시에 가능하다.</li>
+  <li>구글에서 사전에 정의해둔 역할기반으로 사용자에게 권한을 부여할 수 있다. (커스텀 권한설정도 가능)</li>
+  <li>모든 사용자에게 모든 권한을 열어주기 보다는 최소 권한의 원칙을 적용하여 필요한 사람에게 필요한 권한만을 줄 것을 권장한다.</li>
+  <li>IAM으로 보여된 권한을 가진 사용자가 행동하는 모든 기록은 감사 로그를 통해 확인이 가능하다.</li>
+</ol>
+
+<h4 id="google-cloud-platform-console">Google Cloud Platform Console</h4>
+<ol>
+  <li>구글은 콘솔환경을 지원한다.</li>
+  <li>웹에 자체개발한 콘솔화면을 띄울 수 있다.</li>
+</ol>
+
+<h4 id="gcp-marketplace">GCP Marketplace</h4>
+<p>Marketplace에 접근해보면 다른사용자들 혹은 구글에서 만든 서버환경 세팅이 있다.
+필요한것을 찾아 클릭. 설치하면 바로 필요한 환경이 바로 세팅된다.
+예를들어 Node + Express + Vue.js로 구성된 프로젝트가 있는 서버환경
+*일부 솔루션은 타사 라이선스 요금도 함께 부과되니 주의해야한다.</p>
+
+<h4 id="virtual-private-cloud-네트워크">Virtual Private Cloud 네트워크</h4>
+<p>구글은 해저케이블을 통해 전세계 네트워크망을 가지고 있다. 모든 서버리소스는 공인IP와 별도로 내부IP를 가지고 있다. <br />
+아시아에 있는 A서버에서 미국에 있는 B서버로 통신을 할 경우 라우터를 30개 가량 통과해야 하지만, 구글의 내부IP를 이용하면 라우터 1번만으로 찾아갈 수 있다. <br />
+(미국, 아시아 각각 서버가 본인 소유이고 2개에서 통신이 필요한 경우 속도에서 이득이 있을 듯)</p>
+
+<h4 id="cloud-global-load-balancing-https-tcp-udp-ssl">Cloud Global Load Balancing: HTTP(S), TCP, UDP, SSL</h4>
+<p>hot ptato라고 불리는 개념을 해결한 모듈. 라우터는 목적지 IP를 받은 후 최적의 경로와 최고의 속도(Health check)를 내주는 라우터에게 트래픽을 전달한다.</p>
+
+<h4 id="compute-engine-고성능-가상머신">Compute Engine 고성능 가상머신</h4>
+<ol>
+  <li>안정적인 성능, 빠른부팅</li>
+  <li>다운타임없이 Disk 용량조절</li>
+  <li>Auto-scaling 지원</li>
+  <li>수평으로 확장 가능한 인스턴스 (CPU 등)</li>
+  <li>지속사용 할인</li>
+  <li>선점형 VM (VM을 한번에 묶어서 몇천대까지 사용 가능) 80%할인 (단 더 중요한 업체가 온다면 양보하는 조건으로 80%할인 해준다고함)</li>
+</ol>
+
+<h4 id="cloud-sql">Cloud SQL</h4>
+<ol>
+  <li>관리형 RDBMS</li>
+  <li>자동복제</li>
+  <li>자동백업</li>
+  <li>수직 확장 및 수평확장</li>
+  <li>강력한 보안적용</li>
+</ol>
+
+<h4 id="cloud-spanner">Cloud Spanner</h4>
+<ol>
+  <li>관리형 RDBMS</li>
+  <li>자동복제</li>
+  <li>강력한 전역 일관성 (DDB 10개를 사용할 경우 1곳에 데이터가 바뀌면 실시간으로 10곳에 모두 적용)</li>
+  <li>가용성이 우수한 인스턴스</li>
+  <li>SQL(ANSI 2011, 확장포함) - 거의 대부분의 SQL문을 그대로 사용가능</li>
+  <li>PTbyte 정도 사용할 경우에 추천</li>
+  <li>Spanner을 여러개 붙여서 사용가능. 30개의 Spanner연결 시 초당 약 23,000건의 쿼리실행 가능</li>
+</ol>
+
+<h4 id="cloud-bigtable">Cloud Bigtable</h4>
+<ol>
+  <li>테라바이트 규모의 NoSQL</li>
+  <li>HBaseAPI로 액세스하며 빅데이터, 하둡과 기본적으로 호환된다</li>
+  <li>역할 기반 ACL</li>
+  <li>Google Gmail이 Bigtable을 사용중이라고함</li>
+</ol>
+
+<h4 id="cloud-storage">Cloud Storage</h4>
+<ol>
+  <li>페타바이트 규모의 고성능 저장공간</li>
+  <li>단순한 용량관리 (용량을 지정할필요 없이 자동으로 확장/축소 됨)</li>
+  <li>모든 데이터 암호화 저장</li>
+  <li>버킷 이라는 이름으로 저장공관 관리</li>
+  <li>액세스 빈도에 따라 등급설정이 가능하며 백업용 (액세스가 거의 없는 자료)의 경우 할인율이 높다.</li>
+</ol>
+
+<h4 id="kubernetes">Kubernetes</h4>
+<ol>
+  <li>K8s 라고도 불리는 컨테이너 서비스</li>
+  <li>컨테이너의 배포, 확장, 운영의 자동화</li>
+  <li>운영체제에 대해 독립적 (일관성있는 환경을 제공)</li>
+  <li>다운타임 없이 애플리케이션의 업데이트가 가능</li>
+  <li>부하분산, 자동확장</li>
+</ol>
+
+<h4 id="kubernetes-engine">Kubernetes Engine</h4>
+<ol>
+  <li>컨테이너 관리 및 실행</li>
+  <li>로깅, 상태관리 모니터링</li>
+</ol>
+
+<h4 id="google-cloud-container-builder">Google Cloud Container Builder</h4>
+<p>컨테이너 이미지 생성</p>
+
+<h4 id="app-engine">App Engine</h4>
+<ol>
+  <li>소스코드만 집중할 수 있는 서버엔진</li>
+  <li>ServerLess</li>
+</ol>
+
+<h4 id="cloud-functions">Cloud Functions</h4>
+<ol>
+  <li>서버없이 함수개발</li>
+  <li>RESTful 지원</li>
+</ol>
+
+<hr />
+
+<h3 id="gcp-vs-aws-모듈-명칭-비교">GCP vs AWS 모듈 명칭 비교</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Google Cloud Platform</th>
+      <th style="text-align: center">Amazon Web Service</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">IAM</td>
+      <td style="text-align: center">IAM</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">App Engine</td>
+      <td style="text-align: center">Elastic Beanstalk</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Compute Engine</td>
+      <td style="text-align: center">EC2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Cloud SQL</td>
+      <td style="text-align: center">RDS</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Cloud Storage</td>
+      <td style="text-align: center">S3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Stackdriver</td>
+      <td style="text-align: center">Cloud Watch</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Cloud Functions</td>
+      <td style="text-align: center">Lambda</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>명칭비교는 지속적으로 업데이트할 예정. (잘못 적어둔게 있다면 제보해주세요)</li>
+</ul>
+
+:ET

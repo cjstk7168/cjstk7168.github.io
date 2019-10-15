@@ -1,0 +1,55 @@
+I"�<h2 id="srcrouterindexjs">src/router/index.js</h2>
+<p>위 파일을 열어보면 아래 소스를 확인할 수 있다. (구조에 따라 다를 수 있음)</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Router</span><span class="p">({</span>
+  <span class="na">routes</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">HelloWorld</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">component</span><span class="p">:</span> <span class="nx">HelloWorld</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">router</span>
+</code></pre></div></div>
+
+<p>Vue.js는 mode설정을 하지않으면 기본적으로 <code class="highlighter-rouge">hash</code>모드로 동작한다.
+(이 경우 ‘http://example.com/#/’ 과 같이 URL 뒤에 #이 붙는다.)</p>
+
+<p>이 mode를 <code class="highlighter-rouge">history</code>로 바꿔주면 URL뒤에 #이 사라진 모습을 볼 수 있다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Router</span><span class="p">({</span>
+  <span class="na">mode</span><span class="p">:</span> <span class="dl">'</span><span class="s1">history</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">routes</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">HelloWorld</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">component</span><span class="p">:</span> <span class="nx">HelloWorld</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">})</span>
+<span class="k">export</span> <span class="k">default</span> <span class="nx">router</span>
+</code></pre></div></div>
+
+<h2 id="mode-hash-vs-history-"><code class="highlighter-rouge">mode</code> hash vs history ?</h2>
+<p><strong>hash</strong>
+모든 url을 hash형태로 서비스한다. URL이 변경될 때 페이지가 다시 로드 되지 않는다.</p>
+
+<p><strong>history</strong>
+페이지를 다시 로드하지 않고 URL을 탐색할 수 있다.
+SPA의 단일 페이지 클라이언트앱이기 때문에 사용자가 직접 <code class="highlighter-rouge">http://example.com/user/id</code> 에 접속하면 404오류가 발생한다.</p>
+
+<h2 id="history모드에서-404오류-해결방법">history모드에서 404오류 해결방법</h2>
+<p>URL접속 시 동일한 index.html 페이지를 제공해야 한다. nginx 설정으로 변경 가능.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">location</span> <span class="o">/</span> <span class="p">{</span>
+  <span class="nx">try_files</span> <span class="nx">$uri</span> <span class="nx">$uri</span><span class="o">/</span> <span class="sr">/index.html</span><span class="err">;
+</span><span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+<ul>
+  <li>References
+    <ol>
+      <li>https://router.vuejs.org/kr/guide/essentials/history-mode.html#%EC%84%9C%EB%B2%84-%EC%84%A4%EC%A0%95-%EC%98%88%EC%A0%9C</li>
+    </ol>
+  </li>
+</ul>
+:ET

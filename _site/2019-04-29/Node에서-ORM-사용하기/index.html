@@ -32,22 +32,6 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.5.0/styles/default.min.css">
     <script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>[ORM] Node.js에서 ORM 사용하기 | { … 데브로그 }</title>
-<meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="[ORM] Node.js에서 ORM 사용하기" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="Node.js에서 지원하는 ORM의 종류와 차이점 찾아보기" />
-<meta property="og:description" content="Node.js에서 지원하는 ORM의 종류와 차이점 찾아보기" />
-<link rel="canonical" href="http://localhost:4000/2019-04-29/Node%EC%97%90%EC%84%9C-ORM-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" />
-<meta property="og:url" content="http://localhost:4000/2019-04-29/Node%EC%97%90%EC%84%9C-ORM-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/" />
-<meta property="og:site_name" content="{ … 데브로그 }" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-04-29T00:00:00+09:00" />
-<script type="application/ld+json">
-{"description":"Node.js에서 지원하는 ORM의 종류와 차이점 찾아보기","@type":"BlogPosting","url":"http://localhost:4000/2019-04-29/Node%EC%97%90%EC%84%9C-ORM-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/","headline":"[ORM] Node.js에서 ORM 사용하기","dateModified":"2019-04-29T00:00:00+09:00","datePublished":"2019-04-29T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019-04-29/Node%EC%97%90%EC%84%9C-ORM-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0/"},"@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-
 
     <!-- 구글 애드워즈 -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -94,6 +78,10 @@
 <amp-auto-ads type="adsense"
               data-ad-client="ca-pub-9074439507185131">
 </amp-auto-ads>
+
+<script>
+    window.location.href = 'https://kyungyeon.dev';
+</script>
 
 <div class="content-container">
     <div class="row">
@@ -377,36 +365,36 @@
 </blockquote>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. SQL</span>
-<span class="kd">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="s2">"SELECT * FROM post WHERE authorId = 12 AND status = 'active'"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">SELECT * FROM post WHERE authorId = 12 AND status = 'active'</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="c1">// Knex</span>
-<span class="nx">knex</span><span class="p">(</span><span class="s2">"post"</span><span class="p">).</span><span class="nx">select</span><span class="p">()</span>
- <span class="p">.</span><span class="nx">where</span><span class="p">({</span> <span class="na">authorId</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="s1">'active'</span><span class="p">});</span>
+<span class="nx">knex</span><span class="p">(</span><span class="dl">"</span><span class="s2">post</span><span class="dl">"</span><span class="p">).</span><span class="nx">select</span><span class="p">()</span>
+ <span class="p">.</span><span class="nx">where</span><span class="p">({</span> <span class="na">authorId</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">active</span><span class="dl">'</span><span class="p">});</span>
 
 <span class="c1">// Sequelize</span>
 <span class="nx">models</span><span class="p">.</span><span class="nx">Post</span><span class="p">.</span><span class="nx">findAll</span><span class="p">({</span>
-    <span class="na">where</span><span class="p">:</span> <span class="p">{</span> <span class="na">authorId</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="s1">'active'</span> <span class="p">}</span>
+    <span class="na">where</span><span class="p">:</span> <span class="p">{</span> <span class="na">authorId</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">active</span><span class="dl">'</span> <span class="p">}</span>
 <span class="p">})</span>
 
 <span class="c1">// TypeORM</span>
-<span class="nx">connection</span><span class="p">.</span><span class="nx">getRepository</span><span class="p">(</span><span class="nx">Post</span><span class="p">).</span><span class="nx">find</span><span class="p">({</span> <span class="na">where</span><span class="p">:</span> <span class="p">{</span> <span class="na">authorId</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="s1">'active'</span> <span class="p">}</span> <span class="p">})</span>
+<span class="nx">connection</span><span class="p">.</span><span class="nx">getRepository</span><span class="p">(</span><span class="nx">Post</span><span class="p">).</span><span class="nx">find</span><span class="p">({</span> <span class="na">where</span><span class="p">:</span> <span class="p">{</span> <span class="na">authorId</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="na">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">active</span><span class="dl">'</span> <span class="p">}</span> <span class="p">})</span>
 </code></pre></div></div>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 2. SQL</span>
-<span class="kd">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="s2">"select * 
+<span class="kd">const</span> <span class="nx">query</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">select * 
                from category_page 
                where category_id = 5
                  and (show_at is null or show_at &gt;= now()) 
                  and (hide_at is null or hide_at &lt;= now())
                order by updated_at desc 
-               limit 1"</span><span class="p">;</span>
+               limit 1</span><span class="dl">"</span><span class="p">;</span>
              
 <span class="c1">// Knex</span>
-<span class="nx">knex</span><span class="p">(</span><span class="s2">"category_page"</span><span class="p">)</span>
+<span class="nx">knex</span><span class="p">(</span><span class="dl">"</span><span class="s2">category_page</span><span class="dl">"</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">where</span><span class="p">({</span> <span class="na">category_id</span><span class="p">:</span> <span class="mi">5</span> <span class="p">})</span>
-      <span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="nx">b</span> <span class="o">=&gt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">whereNull</span><span class="p">(</span><span class="s1">'show_at'</span><span class="p">).</span><span class="nx">orWhere</span><span class="p">(</span><span class="s1">'show_at'</span><span class="p">,</span> <span class="s1">'&gt;='</span><span class="p">,</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">now</span><span class="p">).</span><span class="nx">toDate</span><span class="p">()))</span>
-      <span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="nx">b</span> <span class="o">=&gt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">whereNull</span><span class="p">(</span><span class="s1">'hide_at'</span><span class="p">).</span><span class="nx">orWhere</span><span class="p">(</span><span class="s1">'hide_at'</span><span class="p">,</span> <span class="s1">'&lt;='</span><span class="p">,</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">now</span><span class="p">).</span><span class="nx">toDate</span><span class="p">()))</span>
-      <span class="p">.</span><span class="nx">orderBy</span><span class="p">(</span><span class="s1">'updated_at'</span><span class="p">,</span> <span class="s1">'desc'</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="nx">b</span> <span class="o">=&gt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">whereNull</span><span class="p">(</span><span class="dl">'</span><span class="s1">show_at</span><span class="dl">'</span><span class="p">).</span><span class="nx">orWhere</span><span class="p">(</span><span class="dl">'</span><span class="s1">show_at</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">&gt;=</span><span class="dl">'</span><span class="p">,</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">now</span><span class="p">).</span><span class="nx">toDate</span><span class="p">()))</span>
+      <span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="nx">b</span> <span class="o">=&gt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">whereNull</span><span class="p">(</span><span class="dl">'</span><span class="s1">hide_at</span><span class="dl">'</span><span class="p">).</span><span class="nx">orWhere</span><span class="p">(</span><span class="dl">'</span><span class="s1">hide_at</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">&lt;=</span><span class="dl">'</span><span class="p">,</span> <span class="nx">moment</span><span class="p">(</span><span class="nx">now</span><span class="p">).</span><span class="nx">toDate</span><span class="p">()))</span>
+      <span class="p">.</span><span class="nx">orderBy</span><span class="p">(</span><span class="dl">'</span><span class="s1">updated_at</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">desc</span><span class="dl">'</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">first</span><span class="p">()</span>
 
 <span class="c1">// Sequelize</span>
@@ -426,17 +414,17 @@
             <span class="p">]</span>
         <span class="p">}</span>
     <span class="p">},</span>
-    <span class="na">order</span><span class="p">:</span> <span class="p">[[</span><span class="s1">'updated_at'</span><span class="p">,</span> <span class="s1">'DESC'</span><span class="p">]]</span>
+    <span class="na">order</span><span class="p">:</span> <span class="p">[[</span><span class="dl">'</span><span class="s1">updated_at</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">DESC</span><span class="dl">'</span><span class="p">]]</span>
 <span class="p">})</span>
 <span class="c1">// 참고 EQ("="), GTE("&gt;="), GT("&gt;"), LT("&lt;"), LTE("&lt;=");</span>
 
 <span class="c1">// TypeORM</span>
 <span class="nx">connection</span><span class="p">.</span><span class="nx">getRepository</span><span class="p">(</span><span class="nx">CategoryPage</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">createQueryBuilder</span><span class="p">()</span>
-    <span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="s2">"category_id = :categoryId"</span><span class="p">,</span> <span class="p">{</span> <span class="na">categoryId</span><span class="p">:</span> <span class="mi">5</span> <span class="p">})</span>
-    <span class="p">.</span><span class="nx">andWhere</span><span class="p">(</span><span class="s2">"(show_at is null or show_at &gt;= now())"</span> <span class="p">)</span>
-    <span class="p">.</span><span class="nx">andWhere</span><span class="p">(</span><span class="s2">"(hide_at is null or hide_at &lt;= now())"</span> <span class="p">)</span>
-    <span class="p">.</span><span class="nx">orderBy</span><span class="p">(</span><span class="s2">"updated_at"</span><span class="p">,</span> <span class="s2">"DESC"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="dl">"</span><span class="s2">category_id = :categoryId</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span> <span class="na">categoryId</span><span class="p">:</span> <span class="mi">5</span> <span class="p">})</span>
+    <span class="p">.</span><span class="nx">andWhere</span><span class="p">(</span><span class="dl">"</span><span class="s2">(show_at is null or show_at &gt;= now())</span><span class="dl">"</span> <span class="p">)</span>
+    <span class="p">.</span><span class="nx">andWhere</span><span class="p">(</span><span class="dl">"</span><span class="s2">(hide_at is null or hide_at &lt;= now())</span><span class="dl">"</span> <span class="p">)</span>
+    <span class="p">.</span><span class="nx">orderBy</span><span class="p">(</span><span class="dl">"</span><span class="s2">updated_at</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">DESC</span><span class="dl">"</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">limit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">getMany</span><span class="p">()</span>
 

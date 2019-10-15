@@ -32,22 +32,6 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.5.0/styles/default.min.css">
     <script src="//cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>[Vue.js] URL뒤에 붙는 # | { … 데브로그 }</title>
-<meta name="generator" content="Jekyll v3.8.5" />
-<meta property="og:title" content="[Vue.js] URL뒤에 붙는 #" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="URL에 왜 #이 붙는걸까?" />
-<meta property="og:description" content="URL에 왜 #이 붙는걸까?" />
-<link rel="canonical" href="http://localhost:4000/2019-06-14/Vue-URL/" />
-<meta property="og:url" content="http://localhost:4000/2019-06-14/Vue-URL/" />
-<meta property="og:site_name" content="{ … 데브로그 }" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2019-06-14T00:00:00+09:00" />
-<script type="application/ld+json">
-{"description":"URL에 왜 #이 붙는걸까?","@type":"BlogPosting","url":"http://localhost:4000/2019-06-14/Vue-URL/","headline":"[Vue.js] URL뒤에 붙는 #","dateModified":"2019-06-14T00:00:00+09:00","datePublished":"2019-06-14T00:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2019-06-14/Vue-URL/"},"@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-
 
     <!-- 구글 애드워즈 -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -94,6 +78,10 @@
 <amp-auto-ads type="adsense"
               data-ad-client="ca-pub-9074439507185131">
 </amp-auto-ads>
+
+<script>
+    window.location.href = 'https://kyungyeon.dev';
+</script>
 
 <div class="content-container">
     <div class="row">
@@ -278,8 +266,8 @@
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Router</span><span class="p">({</span>
   <span class="na">routes</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="na">path</span><span class="p">:</span> <span class="s1">'/'</span><span class="p">,</span>
-      <span class="na">name</span><span class="p">:</span> <span class="s1">'HelloWorld'</span><span class="p">,</span>
+      <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">HelloWorld</span><span class="dl">'</span><span class="p">,</span>
       <span class="na">component</span><span class="p">:</span> <span class="nx">HelloWorld</span>
     <span class="p">}</span>
   <span class="p">]</span>
@@ -292,11 +280,11 @@
 
 <p>이 mode를 <code class="highlighter-rouge">history</code>로 바꿔주면 URL뒤에 #이 사라진 모습을 볼 수 있다.</p>
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Router</span><span class="p">({</span>
-  <span class="na">mode</span><span class="p">:</span> <span class="s1">'history'</span><span class="p">,</span>
+  <span class="na">mode</span><span class="p">:</span> <span class="dl">'</span><span class="s1">history</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">routes</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
-      <span class="na">path</span><span class="p">:</span> <span class="s1">'/'</span><span class="p">,</span>
-      <span class="na">name</span><span class="p">:</span> <span class="s1">'HelloWorld'</span><span class="p">,</span>
+      <span class="na">path</span><span class="p">:</span> <span class="dl">'</span><span class="s1">/</span><span class="dl">'</span><span class="p">,</span>
+      <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">HelloWorld</span><span class="dl">'</span><span class="p">,</span>
       <span class="na">component</span><span class="p">:</span> <span class="nx">HelloWorld</span>
     <span class="p">}</span>
   <span class="p">]</span>

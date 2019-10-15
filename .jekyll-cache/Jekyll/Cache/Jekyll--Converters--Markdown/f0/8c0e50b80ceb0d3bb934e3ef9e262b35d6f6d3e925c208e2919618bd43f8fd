@@ -1,0 +1,44 @@
+I"B<h2 id="git-사용">git 사용</h2>
+<p>나는 한 스타트업에 재직중인 <code class="highlighter-rouge">Backend</code> 개발자이다. 경력이 만으로 5년이 넘어가고 6년차가 되었지만 부끄럽게도 git을 지금까지는 아주 기본적인 기능만 사용해왔었다.</p>
+
+<p><code class="highlighter-rouge">굳이 git을 써야해?</code> 할 정도로 소스 버전관리/협업의 목적보다는 개발한 소스를 공유하는 정도로만 사용했다. 개발자가 많지 않았던터라 push 도중 <code class="highlighter-rouge">conflict</code>경우도 거의 없었다.
+그동안 <code class="highlighter-rouge">add, pull, push</code>만 사용해왔던것같다.</p>
+
+<p>지금 회사에 와서야 git을 사용하면서 다른사람들에게는 너무나 쉽겠지만 나에겐 적응이 필요했던 git 사용기를 기록해볼까 한다.</p>
+
+<h2 id="매일-아침-rebase받는-습관">매일 아침 rebase받는 습관</h2>
+<p><a href="/2019-07-02/Github-merge-rebase/">rebase가 뭔지는 여기에서</a><br />
+매일 아침 <code class="highlighter-rouge">develop</code>에서 (혹은 회사에 따라서 <code class="highlighter-rouge">master</code>에서?) 매일아침 rebase를 받는다.
+그 이유는 내가 작업하고있는 부분이 다른사람도 수정했을 경우가 있기 때문에. 이런경우 rebase받을 때 conflict가 생기는데 이 부분을 잘 merge해줘야 한다. 그러면 나중에 push할 때 충돌 없이 merge가 가능하다.</p>
+
+<p>처음에는 이걸 몰라서 conflict 상황에서 어떻게 해야할지 몰랐다.<br />
+<del>물론 지금도 <code class="highlighter-rouge">conflict</code>의 해결법을 100% 이해하고 사용하고있는지 의심해봐야 한다.</del></p>
+
+<h2 id="branch를-따서-개발하는-습관">branch를 따서 개발하는 습관</h2>
+<p>지금 회사에서는 아니고 아~주 예전에 git을 사용해본지 얼마 되지 않았을 때.. 작업하다가 <code class="highlighter-rouge">branch</code>라는걸 발견했다. <code class="highlighter-rouge">아.. branch라는건 이런거구나 사용해볼까?</code>해서 branch를 여러개 만들었던 기억이 있다. 한참 작업을 하다가 branch를 옮겼는데 3~4일간 작업했던 내용이 모두 사라졌다! <del>이때는 commit도 바로바로 안하고 3~4일치를 몰아서 그냥 push했었다</del></p>
+
+<p>지금 회사에서는 가르침에 따라 branch를 사용하고 있다. <code class="highlighter-rouge">가르침에 따라 100% 잘 활용하고있는지는 모르겠다 ㅠㅠ 배울게 많은듯</code></p>
+
+<p><a href="/2019-06-21/Github-branch-종류/">git branch 명명규칙</a><br />
+이런 명명규칙이 있는지도 몰랐는데.. 요즘 사소한거부터 배우는게 많은 것 같다.</p>
+
+<h2 id="stash-사용하기">stash 사용하기</h2>
+<p>git을 사용하다보면 작업하던 내용을 <code class="highlighter-rouge">commit</code>하지 않고 branch를 이동하면 <code class="highlighter-rouge">commit을 먼저 하시오!!</code>와 같은 오류가 발생한다. 이러한 경우에 <code class="highlighter-rouge">stash</code>를 사용했다. 정확히 이러한 경우에 사용하는게 stash인지는 모르겠다..</p>
+
+<p>문서에는 <code class="highlighter-rouge">작업하던 내용을 임시로 저장해두고 HEAD상태로 돌아가는 방법</code>이라고 적혀있다. 내가 사용했던 기능과 비슷한 느낌인 것 같다.</p>
+
+<p>나는 아직 <code class="highlighter-rouge">git stash</code>, <code class="highlighter-rouge">git stash pop</code>정도로 하나 넣고, 최신껄 가져오는 정도만 사용하지만 <code class="highlighter-rouge">git stash list</code>에서 여러개의 stash를 관리하는 방법도 있다.
+<code class="highlighter-rouge">좀 더 공부해야할 영역</code></p>
+
+<h2 id="git-push--f">git push -f</h2>
+<p>push가 안될때… 상황을 예를들면 <code class="highlighter-rouge">rebase</code>를 해서 <code class="highlighter-rouge">commit</code>을 합치거나 순서조정 등을 했을 경우.. <code class="highlighter-rouge">git push -f</code> 를 사용하곤 했다.</p>
+
+<p>하지만 여러 블로그들을 보았을 때 <code class="highlighter-rouge">-f</code>는 다른 개발자의 로컬을 망가뜨리는 행위라고 했다.
+다른사람과의 충돌상황에서 나의 소스를 강제로 밀어 올리기 때문.. 이런걸 ‘막’ 하다보면 다른개발자가 <code class="highlighter-rouge">작업한 소스가 없어졌어요!!</code> 라는 말이 들리기도 한다.</p>
+
+<p>반드시 push하기 전에 commit을 합치거나 순서를 바꾸거나 하는 행동이 필요하다면 local해서 충분히 고민 후 push하는 습관을 가져야한다.</p>
+
+<h2 id="정리하며">정리하며..</h2>
+<p>회사에 다른 개발자분이 git 책을 가지고 있는것을 보았다. 두께가 만만치 않다.<br />
+알면 알수록 어려운 git. 잘 사용하면 너무나 편리한 개발을 위한 협업 툴이라 생각된다. 기본적인 기능들은 잘 활용하는 수준이 되면 더 공부해보고싶은 분야.</p>
+:ET

@@ -1,0 +1,57 @@
+I"�
+<h4 id="cdn이란">CDN이란?</h4>
+<p>CDN (Content Delivery Network)의 약자로 전 세계에서 분산되어있는 서버 네트워크를 말합니다. CDN은 사용자가 리소스를 다운할 수 있는 서버를 세계 각 지역에 퍼져있기 때문에 지연시간 감소로 인해 빠르게 컨텐츠의 요청/응답을 받을 수 있고, 다운로드를 제공함으로서 사용자에게 더 빠른 서비스를 할 수 있습니다.</p>
+
+<p>출처 : <a href="https://ko.wikipedia.org/wiki/%EC%BD%98%ED%85%90%EC%B8%A0_%EC%A0%84%EC%86%A1_%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC">위키 요약</a></p>
+
+<hr />
+
+<p>만약 유럽에 있는 국가가 한국서버를 이용할 경우 물리적인 거리로 인해 요청/응답 속도가 늦어질 수 밖에 없습니다.
+이런 경우 유럽 요청자의 근처의 위치의 CDN 서버에 복사하여 유럽사용자에게 더 빠른 연결, 속도를 보장할 수 있습니다.</p>
+
+<hr />
+
+<h4 id="gslb-global-server-load-balance">GSLB (Global server Load Balance)</h4>
+<p>사용자에게 컨텐츠요청이 있는 경우 가장 최적의(가장 근접의 혹은 트래픽여유가 많은) 서버환경을 찾아주는 역할을 한다.</p>
+
+<blockquote>
+  <p><strong>DNS와 GSLB의 차이점</strong></p>
+  <ul>
+    <li><strong>DNS</strong><br />
+– 서버의 상태를 알 수 없기 때문에 서비스가 정상/중단 여부를 모른다.<br />
+– Round Robin을 이용한 로드밸런싱으로 지역과 떨어진 지역의 서버와도 네트워크를 연결한다.</li>
+    <li><strong>GSLB</strong><br />
+– 서버의 상태를 알 수 있어서 정상으로 작동하는 서버를 찾아낸다. <br />
+– Round Robin방식은 동일하나 서버의 트래픽을 분석하고 근접한 서버를 찾아내어 부하를 분산시켜준다.</li>
+  </ul>
+</blockquote>
+
+<hr />
+
+<h4 id="cdn의-캐싱방식">CDN의 캐싱방식</h4>
+<ol>
+  <li>Static Caching
+    <ul>
+      <li>origin서버의 리소스를 CDN서버에 미리 복사해놓는 방식.</li>
+      <li>사용자가 요청 시 무조건 CDN서버에서 리소스를 가져온다.</li>
+    </ul>
+  </li>
+  <li>Dynamic Caching
+    <ul>
+      <li>사용자가 리소스 요청 시 CDN서버를 조회한 후 리소스가 없다면 origin서버에서 가져오고 CDN서버에 리소스를 복사해둔다. (Contents Sync)</li>
+      <li>일정시간(TTL)이 지나도 사용이 없으면 CDN서버의 리소스를 삭제한다.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+<ul>
+  <li>References
+    <ol>
+      <li>https://goddaehee.tistory.com/173</li>
+      <li>https://cloud.google.com/cdn/docs/overview?hl=ko</li>
+      <li>https://cloud.google.com/load-balancing/?hl=ko</li>
+    </ol>
+  </li>
+</ul>
+:ET

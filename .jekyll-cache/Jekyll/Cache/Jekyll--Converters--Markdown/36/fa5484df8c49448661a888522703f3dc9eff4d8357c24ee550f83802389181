@@ -1,0 +1,45 @@
+I"	<h2 id="typescript-설치">TypeScript 설치</h2>
+<p>우선 <code class="highlighter-rouge">express</code>를 먼서 설치해준다.
+본 예제에서는 서버용 <code class="highlighter-rouge">express</code>를 세팅하기위하여 프로젝트명을 <code class="highlighter-rouge">api</code>로 설정한다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ npm install express-generator -g
+$ express api
+</code></pre></div></div>
+<p>그리고 기본적인 모듈 설치</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cd api
+$ npm install
+</code></pre></div></div>
+
+<p>이제 기본적인 express세팅은 끝이났다.
+다음으로 TypeScript사용을 위한 세팅을 한다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># make package.json
+$ npm init -y
+
+# install save devDependencies
+$ npm i -D typescript
++ typescript@3.5.3
+
+# install @types
+$ npm i -D @types/node @types/express
++ @types/express@4.0.37
++ @types/node@8.0.30
+</code></pre></div></div>
+
+<p>빌드를 위한 TypeScript설정을 한다.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># make tsconfig.json
+$ npx tsc -init
+</code></pre></div></div>
+
+<p>프로젝트를 시작할 때 TypeScript를 빌드 후 Node.js로 실행하는 스크립트를 편집한다.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># package.json
+{
+  "scripts": {
+    "start": "tsc &amp;&amp; node dist"
+  }
+}
+</code></pre></div></div>
+
+<p>여기까지 했으면 TypeScript사용을 위한 express세팅이 완료되었다.<br />
+<code class="highlighter-rouge">npm start</code>를 통하여 정상적으로 동작하는지 확인해본다.</p>
+:ET

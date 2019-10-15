@@ -1,0 +1,29 @@
+I"�<h3 id="expresssession">ExpressSession</h3>
+<p>ExpressSession은 Express 프레임워크에서 세션관리를 위한 미들웨어입니다.</p>
+
+<h3 id="appjs를-편집합니다">app.js를 편집합니다.</h3>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">session</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express-session</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span>
+  <span class="nx">expressSession</span><span class="p">({</span>
+    <span class="na">store</span><span class="p">:</span> <span class="k">new</span> <span class="nx">RedisStore</span><span class="p">({</span>
+      <span class="na">host</span><span class="p">:</span> <span class="p">,</span>
+      <span class="na">port</span><span class="p">:</span> <span class="p">,</span>
+      <span class="na">prefix</span><span class="p">:</span> <span class="p">,</span>
+    <span class="p">}),</span>
+    <span class="na">resave</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">saveUninitialized</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="na">secret</span><span class="p">:</span> <span class="dl">'</span><span class="s1">!$#%#$%#$#</span><span class="dl">'</span><span class="p">,</span>
+  <span class="p">})</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<ul>
+  <li>store - 세션을 저장할 장소를 지정한다. 위 예제에서는 redis에 저장한다.</li>
+  <li>파일 / redis / database 등 설정 가능</li>
+  <li>secret - 쿠키의 임의로 변조하는것을 막기 위하여 설정하는 값. 이 값을 통하여 암호화하여 저장한다.</li>
+  <li>resave - 세션을 언제나 저장할지 정하는 값. false권장</li>
+  <li>saveUninitialized - 세션이 저장되기 전에 uninitialized상태로 미리 저장한다.</li>
+  <li>cookie - 쿠키사용여부와 그에대한 속성설정</li>
+</ul>
+:ET
